@@ -461,36 +461,36 @@ function controllaScadenze() {
     datiGlobali.forEach(s => {
         const diff = giorniDiff(s.data_scadenza);
 
+        // Notifica a 5 giorni o meno (non scadute)
+        if (diff <= 5 && diff >= 0) {
+            const msg = s.titolo + " - " + s.data_scadenza;
+
+            // evita duplicati
+            if (!listaNotifiche.includes(msg)) {
+                listaNotifiche.push(msg);
+                aggiornaBadge();
+            }
+
+            // notifica browser solo a 5 giorni esatti
+            if (diff === 5) {
+                new Notification("Scadenza tra 5 giorni", {
+                    body: s.titolo
+                });
+            }
+        }
+
+        // oggi
         if (diff === 0) {
             new Notification("Scadenza oggi", {
                 body: s.titolo
             });
-            fetch('/notifica-email', {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    titolo: s.titolo,
-                    data_scadenza: s.data_scadenza
-                })
-            });
-            listaNotifiche.push(s.titolo + " - " + s.data_scadenza);
-            aggiornaBadge();
         }
 
+        // domani
         if (diff === 1) {
             new Notification("Scadenza domani", {
                 body: s.titolo
             });
-            fetch('/notifica-email', {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    titolo: s.titolo,
-                    data_scadenza: s.data_scadenza
-                })
-            });
-            listaNotifiche.push(s.titolo + " - " + s.data_scadenza);
-            aggiornaBadge();
         }
     });
 }

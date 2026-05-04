@@ -9,11 +9,18 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const session = require('express-session');
+
+app.use(session({
+    secret: 'tecnotel-secret',
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 const db = new sqlite3.Database('./database.db');
-
-let currentUser = null;
 
 db.serialize(() => {
     db.run(`
@@ -22,7 +29,7 @@ db.serialize(() => {
         titolo TEXT,
         descrizione TEXT,
         data_scadenza TEXT,
-        priorita TEXT
+        priorita TEXT DEFAULT 'bassa'
     )
     `);
 
@@ -34,10 +41,6 @@ db.serialize(() => {
         ruolo TEXT
     )
     `);
-
-    db.run(`ALTER TABLE scadenze ADD COLUMN priorita TEXT`, (err) => {});
-
-    db.run(`UPDATE scadenze SET priorita = 'bassa' WHERE priorita IS NULL`, (err) => {});
 
     db.run(`CREATE INDEX IF NOT EXISTS idx_scadenze_data ON scadenze(data_scadenza)`);
 });
@@ -84,12 +87,12 @@ app.post('/login', (req, res) => {
 
     // LOGIN HARDCODED TECNOTEL
     if (username === "Tecnotel" && password === "t3cn0t3l!") {
-        currentUser = { id: 0, username: "Tecnotel", ruolo: "admin" };
+        req.session.user = { id: 0, username: "Tecnotel", ruolo: "admin" };
         // Se arriva da form HTML, fai redirect alla dashboard
         if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
             return res.redirect('/');
         }
-        return res.json({ login: true, user: currentUser });
+        return res.json({ login: true, user: req.session.user });
     }
 
     db.get("SELECT * FROM utenti WHERE username = ?", [username], async (err, user) => {
@@ -103,26 +106,26 @@ app.post('/login', (req, res) => {
             return res.status(401).json({ error: "password errata" });
         }
 
-        currentUser = { id: user.id, username: user.username, ruolo: user.ruolo };
+        req.session.user = { id: user.id, username: user.username, ruolo: user.ruolo };
         // Se arriva da form HTML, fai redirect alla dashboard
         if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
             return res.redirect('/');
         }
-        res.json({ login: true, user: currentUser });
+        res.json({ login: true, user: req.session.user });
     });
 });
 
 // CHECK LOGIN
 app.get('/me', (req, res) => {
-    if (!currentUser) {
+    if (!req.session.user) {
         return res.status(401).json({ logged: false });
     }
-    res.json({ logged: true, user: currentUser });
+    res.json({ logged: true, user: req.session.user });
 });
 
 // LOGOUT
 app.get('/logout', (req, res) => {
-    currentUser = null;
+    req.session.destroy(() => {});
     res.redirect('/login');
 });
 
@@ -143,7 +146,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/scadenze', (req, res) => {
-    if (!currentUser) return res.status(401).json({ error: "non autenticato" });
+    if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
 
     db.all("SELECT * FROM scadenze ORDER BY data_scadenza ASC", [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -153,12 +156,13 @@ app.get('/scadenze', (req, res) => {
 
 app.post('/scadenze', (req, res) => {
     const { titolo, descrizione, data_scadenza, priorita } = req.body;
+    const prio = priorita || 'bassa';
     if (!titolo || !data_scadenza) {
         return res.status(400).json({ error: "titolo e data_scadenza obbligatori" });
     }
     db.run(
         "INSERT INTO scadenze (titolo, descrizione, data_scadenza, priorita) VALUES (?, ?, ?, ?)",
-        [titolo, descrizione, data_scadenza, priorita],
+        [titolo, descrizione, data_scadenza, prio],
         function(err) {
             if (err) return res.status(500).json({ error: err.message });
             res.json({ id: this.lastID });
@@ -168,12 +172,13 @@ app.post('/scadenze', (req, res) => {
 
 app.put('/scadenze/:id', (req, res) => {
     const { titolo, data_scadenza, priorita } = req.body;
+    const prio = priorita || 'bassa';
     if (!titolo || !data_scadenza) {
         return res.status(400).json({ error: "titolo e data_scadenza obbligatori" });
     }
     db.run(
         "UPDATE scadenze SET titolo = ?, data_scadenza = ?, priorita = ? WHERE id = ?",
-        [titolo, data_scadenza, priorita, req.params.id],
+        [titolo, data_scadenza, prio, req.params.id],
         function(err) {
             if (err) return res.status(500).json({ error: err.message });
             res.json({ updated: true });
