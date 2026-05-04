@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<style>
+@font-face {
+    font-family: 'MicroExtend';
+    src: url('MPonderosa.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    --bg: #f5f5f5;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --accent: #f97316;
+    --accent-soft: #fb923c;
+    --dark: #111111;
+    --gray: #6b7280;
+    --border: #e5e7eb;
+}
+
+.light {
+    --bg: #111111;
+    --card: #1f1f1f;
+    --text: #f5f5f5;
+    --border: #374151;
+    --gray: #9ca3af;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 24px;
+    box-sizing: border-box;
+}
+
+.topbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.topbar div[style] {
+    display:flex;
+    align-items:flex-start;
+    gap:4px;
+}
+.topbar div[style] img {
+    height: 40px;
+    background: transparent;
+    padding: 0;
+}
+.topbar h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text);
+    text-transform: uppercase;
+    font-size: 32px;
+    letter-spacing: 0.8px;
+    font-family: 'MicroExtend', Arial, sans-serif;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    transition: 0.2s;
+    border: 1px solid var(--border);
+}
+
+button.primary {
+    background: #16a34a;
+}
+button.secondary { background: #6b7280; }
+button.ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid currentColor;
+}
+
+
+button.delete { background: #dc2626; }
+button.warning { background: #fb923c; }
+button.success { background: #16a34a; }
+
+
+button.info-btn { background: #3b82f6; }
+
+button.ordina-btn {
+    background: var(--text);
+    color: var(--bg);
+    border: 1px solid var(--border);
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+button.primary,
+button.secondary,
+button.delete,
+button.warning,
+button.success,
+button.info-btn,
+button.ordina-btn {
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light button.primary,
+body.light button.secondary,
+body.light button.delete,
+body.light button.warning,
+body.light button.success,
+body.light button.info-btn,
+body.light button.ordina-btn {
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+input, select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    flex: 1;
+}
+
+.card {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.info {
+    flex: 1;
+}
+
+.buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.scaduta { border-left: 5px solid var(--danger); }
+.urgente { border-left: 5px solid var(--warning); }
+
+.stats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    background: var(--card);
+    padding: 10px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+    border: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+.alta { background: #ea580c; color: white; }
+.media { background: #fb923c; color: white; }
+.bassa { background: #6b7280; color: white; }
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--dark);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
+.toast.show { opacity: 1; }
+.edit-input {
+    width: 100%;
+    margin-bottom: 5px;
+}
+.dropzones {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.dropzone {
+    flex: 1;
+    padding: 10px;
+    border: 2px dashed #555;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+}
+.kanban {
+    display: flex;
+    gap: 10px;
+}
+.col {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 200px;
+    transition: background 0.2s;
+}
+.col.dragover {
+    background: rgba(249,115,22,0.2);
+}
+.col h3 {
+    text-align: center;
+    margin-top: 0;
+}
+</style>
+</head>
+
+<body style="overflow-x:hidden;">
+
+<div class="container">
+
+    <div class="topbar">
+        <div style="display:flex;align-items:center;gap:10px;">
+            <img src="logo.png" style="height:40px;">
+        </div>
+        <h2>Dashboard</h2>
+        <div class="actions">
+            <button class="ghost" onclick="toggleTheme()">Tema</button>
+            <button class="secondary" onclick="filtra('tutte')">Tutte</button>
+            <button onclick="filtra('urgenti')" class="warning">Urgenti</button>
+            <button onclick="filtra('scadute')" class="delete">Scadute</button>
+            <div style="position:relative;">
+                <button class="info-btn" onclick="toggleNotificheDropdown()">Notifiche <span id="notifBadge" style="background:red;color:white;border-radius:50%;padding:2px 6px;font-size:10px;display:none;position:absolute;top:-6px;right:-6px;">0</span></button>
+                <div id="notifDropdown" style="display:none; position:absolute; right:0; top:110%; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:10px; min-width:200px; box-shadow:0 4px 10px rgba(0,0,0,0.1); z-index:100;">
+                    <div id="notifContent">Nessuna notifica</div>
+                </div>
+            </div>
+            <div id="userMenu" style="position:relative;">
+                <button class="ghost" id="userBtn" onclick="toggleUserMenu()">
+                    <span id="userLabel" style="font-weight:600;"></span> ▾
+                </button>
+                <div id="userDropdown" style="display:none; position:absolute; right:0; top:110%; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px; min-width:120px; box-shadow:0 4px 10px rgba(0,0,0,0.1); z-index:100;">
+                    <button class="secondary" style="width:100%; margin-bottom:6px;" onclick="openSettings()">Impostazioni</button>
+                    <button class="secondary" style="width:100%;" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat" id="totali">Totali: 0</div>
+        <div class="stat" id="urgenti">Urgenti: 0</div>
+        <div class="stat" id="scadute">Scadute: 0</div>
+    </div>
+
+    <div class="toolbar">
+        <input id="titolo" placeholder="Titolo">
+        <input id="data" type="date">
+        <select id="priorita">
+            <option value="bassa">Bassa</option>
+            <option value="media">Media</option>
+            <option value="alta">Alta</option>
+        </select>
+        <button class="primary" onclick="aggiungi()">Aggiungi</button>
+        <button class="ordina-btn" onclick="ordina()">Ordina</button>
+        <select id="tipoOrdine" onchange="ordinaAvanzato()">
+            <option value="data">Data</option>
+            <option value="priorita">Priorità</option>
+            <option value="titolo">Titolo</option>
+        </select>
+        <button class="secondary" onclick="resetFiltri()">Reset</button>
+        <input placeholder="Cerca..." oninput="cerca(this.value)">
+    </div>
+
+    <div class="kanban">
+        <div class="col" ondragover="allowDrop(event)" ondrop="drop(event, 'alta')">
+            <h3>Alta</h3>
+            <div id="col-alta"></div>
+        </div>
+        <div class="col" ondragover="allowDrop(event)" ondrop="drop(event, 'media')">
+            <h3>Media</h3>
+            <div id="col-media"></div>
+        </div>
+        <div class="col" ondragover="allowDrop(event)" ondrop="drop(event, 'bassa')">
+            <h3>Bassa</h3>
+            <div id="col-bassa"></div>
+        </div>
+    </div>
+
+<div id="settingsOverlay" onclick="closeSettings()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:150;"></div>
+
+<div id="settingsPanel" style="position:fixed; top:0; bottom:0; right:-100%; width:360px; max-width:90vw; box-sizing:border-box; background:var(--card); border-left:1px solid var(--border); box-shadow:-4px 0 12px rgba(0,0,0,0.1); transition:right 0.25s ease; z-index:200; padding:16px; display:flex; flex-direction:column; gap:12px; overflow-y:auto;">
+    
+    <h3>Impostazioni</h3>
+
+    <label>Notifiche</label>
+    <button class="info-btn" onclick="toggleNotifiche() " id="btnNotifiche">Attiva notifiche</button>
+
+    <label>Ordinamento predefinito</label>
+    <select id="defaultOrder" onchange="salvaImpostazioni()">
+        <option value="data">Data</option>
+        <option value="priorita">Priorità</option>
+        <option value="titolo">Titolo</option>
+    </select>
+
+    <label>Tema</label>
+    <button class="ghost" onclick="toggleTheme()">Cambia tema</button>
+
+    <div style="margin-top:auto;">
+        <button class="secondary" onclick="closeSettings()">Chiudi</button>
+    </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const API = "/scadenze";
+
+function logout() {
+    fetch('/logout')
+    .then(() => {
+        window.location.href = '/login';
+    });
+}
+async function checkLogin() {
+    try {
+        const res = await fetch('/me');
+        if (!res.ok) {
+            window.location.href = '/login';
+            return false;
+        }
+        const data = await res.json();
+        if (!data.logged) {
+            window.location.href = '/login';
+            return false;
+        }
+        return true;
+    } catch {
+        window.location.href = '/login';
+        return false;
+    }
+}
+
+async function loadUser() {
+    try {
+        const res = await fetch('/me');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.logged) {
+            const el = document.getElementById('userLabel');
+            if (el) el.innerText = data.user.username;
+        }
+    } catch {}
+}
+
+function toggleUserMenu() {
+    const menu = document.getElementById('userDropdown');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+function openSettings() {
+    document.getElementById('settingsPanel').style.right = "0px";
+    document.getElementById('settingsOverlay').style.display = "block";
+
+    const saved = localStorage.getItem('tipoOrdine') || 'data';
+    const sel = document.getElementById('defaultOrder');
+    if (sel) sel.value = saved;
+
+    document.getElementById('userDropdown').style.display = "none";
+}
+
+function closeSettings() {
+    document.getElementById('settingsPanel').style.right = "-100%";
+    document.getElementById('settingsOverlay').style.display = "none";
+}
+
+function salvaImpostazioni() {
+    const val = document.getElementById('defaultOrder').value;
+    localStorage.setItem('tipoOrdine', val);
+    document.getElementById('tipoOrdine').value = val;
+    ordinaAvanzato();
+    showToast("Impostazioni salvate");
+}
+
+// chiusura menu clic fuori
+document.addEventListener('click', function(e){
+    const menu = document.getElementById('userMenu');
+    if (!menu.contains(e.target)) {
+        const dd = document.getElementById('userDropdown');
+        if (dd) dd.style.display = 'none';
+    }
+});
+let filtro = "tutte";
+let datiGlobali = [];
+let query = "";
+let editingId = null;
+let dragId = null;
+let ordineAsc = true;
+let tipoOrdineSalvato = localStorage.getItem("tipoOrdine") || "data";
+let notificheAttive = localStorage.getItem("notifiche") === "true";
+let listaNotifiche = [];
+syncNotificheUI();
+aggiornaBadge();
+document.getElementById("tipoOrdine").value = tipoOrdineSalvato;
+
+function giorniDiff(data) {
+    const oggi = new Date();
+    const d = new Date(data);
+    return Math.ceil((d - oggi) / (1000*60*60*24));
+}
+
+function controllaScadenze() {
+    if (!notificheAttive) return;
+
+    datiGlobali.forEach(s => {
+        const diff = giorniDiff(s.data_scadenza);
+
+        if (diff === 0) {
+            new Notification("Scadenza oggi", {
+                body: s.titolo
+            });
+            fetch('/notifica-email', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    titolo: s.titolo,
+                    data_scadenza: s.data_scadenza
+                })
+            });
+            listaNotifiche.push(s.titolo + " - " + s.data_scadenza);
+            aggiornaBadge();
+        }
+
+        if (diff === 1) {
+            new Notification("Scadenza domani", {
+                body: s.titolo
+            });
+            fetch('/notifica-email', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    titolo: s.titolo,
+                    data_scadenza: s.data_scadenza
+                })
+            });
+            listaNotifiche.push(s.titolo + " - " + s.data_scadenza);
+            aggiornaBadge();
+        }
+    });
+}
+
+function filtra(tipo) {
+    filtro = tipo;
+    carica();
+}
+
+function cerca(val) {
+    query = val.toLowerCase();
+    render(datiGlobali);
+}
+
+async function carica() {
+    const res = await fetch(API);
+    const data = await res.json();
+    datiGlobali = data;
+    render(data);
+}
+
+async function aggiungi() {
+    const titolo = document.getElementById("titolo").value;
+    const data = document.getElementById("data").value;
+    const priorita = document.getElementById("priorita").value;
+
+    if (!titolo || !data) return alert("Compila tutto");
+
+    await fetch(API, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ titolo, data_scadenza: data, priorita })
+    });
+
+    carica();
+    showToast("Aggiunto");
+    document.getElementById("titolo").value = "";
+    document.getElementById("data").value = "";
+    document.getElementById("priorita").value = "bassa";
+}
+
+function modifica(id) {
+    editingId = id;
+    render(datiGlobali);
+}
+
+async function elimina(id) {
+    await fetch(API + "/" + id, { method: "DELETE" });
+    carica();
+    showToast("Eliminato");
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+}
+
+function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.innerText = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2000);
+}
+
+
+function toggleNotifiche() {
+    notificheAttive = !notificheAttive;
+    localStorage.setItem("notifiche", notificheAttive);
+
+    const btn = document.getElementById("btnNotifiche");
+    if (btn) {
+        btn.innerText = notificheAttive ? "Disattiva notifiche" : "Attiva notifiche";
+    }
+
+    showToast(notificheAttive ? "Notifiche attivate" : "Notifiche disattivate");
+}
+
+function syncNotificheUI() {
+    const btn = document.getElementById("btnNotifiche");
+    if (btn) {
+        btn.innerText = notificheAttive ? "Disattiva notifiche" : "Attiva notifiche";
+    }
+}
+
+
+function ordina() {
+    ordinaAvanzato();
+}
+
+function ordinaAvanzato() {
+    const tipo = document.getElementById("tipoOrdine").value;
+    localStorage.setItem("tipoOrdine", tipo);
+
+    datiGlobali.sort((a, b) => {
+        if (tipo === "data") {
+            return ordineAsc
+                ? new Date(a.data_scadenza) - new Date(b.data_scadenza)
+                : new Date(b.data_scadenza) - new Date(a.data_scadenza);
+        }
+
+        if (tipo === "titolo") {
+            return ordineAsc
+                ? a.titolo.localeCompare(b.titolo)
+                : b.titolo.localeCompare(a.titolo);
+        }
+
+        if (tipo === "priorita") {
+            const map = { alta: 3, media: 2, bassa: 1 };
+            return ordineAsc
+                ? map[b.priorita] - map[a.priorita]
+                : map[a.priorita] - map[b.priorita];
+        }
+
+        return 0;
+    });
+
+    ordineAsc = !ordineAsc;
+    render(datiGlobali);
+    showToast("Ordinato per " + tipo);
+}
+
+function resetFiltri() {
+    filtro = "tutte";
+    carica();
+}
+
+function render(data) {
+    let tot = data.length;
+    let urg = 0;
+    let sca = 0;
+
+    const filtrati = data.filter(s => {
+        if(query && !s.titolo.toLowerCase().includes(query)) return false;
+        const diff = giorniDiff(s.data_scadenza);
+        if (diff < 0) sca++;
+        else if (diff <= 3) urg++;
+
+        if (filtro === "urgenti") return diff <= 3 && diff >= 0;
+        if (filtro === "scadute") return diff < 0;
+        return true;
+    });
+
+    document.getElementById("totali").innerText = "Totali: " + tot;
+    document.getElementById("urgenti").innerText = "Urgenti: " + urg;
+    document.getElementById("scadute").innerText = "Scadute: " + sca;
+
+    let htmlAlta = "";
+    let htmlMedia = "";
+    let htmlBassa = "";
+
+    filtrati.forEach(s => {
+        const diff = giorniDiff(s.data_scadenza);
+
+        let classe = "";
+        if (diff < 0) classe = "scaduta";
+        else if (diff <= 3) classe = "urgente";
+
+        let card = "";
+
+        if(editingId === s.id){
+            card = `
+            <div class="card ${classe}">
+                <div class="info">
+                    <input class="edit-input" id="edit-titolo-${s.id}" value="${s.titolo}">
+                    <input class="edit-input" id="edit-data-${s.id}" type="date" value="${s.data_scadenza}">
+                    <select id="edit-priorita-${s.id}">
+                        <option value="bassa" ${s.priorita==="bassa"?"selected":""}>Bassa</option>
+                        <option value="media" ${s.priorita==="media"?"selected":""}>Media</option>
+                        <option value="alta" ${s.priorita==="alta"?"selected":""}>Alta</option>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <button class="success" onclick="salva(${s.id})">Salva</button>
+                    <button class="warning" onclick="annulla()">Annulla</button>
+                </div>
+            </div>
+            `;
+        } else {
+            card = `
+            <div class="card ${classe}" draggable="true" ondragstart="drag(event, ${s.id})">
+                <div class="info">
+                    <b>${s.titolo}</b><br>
+                    ${s.data_scadenza} (${diff} giorni)<br>
+                    Priorità: <span class="badge ${s.priorita || 'bassa'}">${s.priorita || 'n/d'}</span>
+                </div>
+                <div class="buttons">
+                    <button class="info-btn" onclick="modifica(${s.id})">Modifica</button>
+                    <button class="delete" onclick="elimina(${s.id})">Elimina</button>
+                </div>
+            </div>
+            `;
+        }
+
+        if(s.priorita === "alta") htmlAlta += card;
+        else if(s.priorita === "media") htmlMedia += card;
+        else htmlBassa += card;
+    });
+
+    document.getElementById("col-alta").innerHTML = htmlAlta;
+    document.getElementById("col-media").innerHTML = htmlMedia;
+    document.getElementById("col-bassa").innerHTML = htmlBassa;
+}
+
+function salva(id){
+    const titolo = document.getElementById("edit-titolo-"+id).value;
+    const data = document.getElementById("edit-data-"+id).value;
+    const priorita = document.getElementById("edit-priorita-"+id).value;
+
+    fetch(API + "/" + id, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ titolo, data_scadenza: data, priorita })
+    }).then(() => {
+        editingId = null;
+        carica();
+        showToast("Salvato");
+    });
+}
+
+function annulla(){
+    editingId = null;
+    render(datiGlobali);
+}
+
+function drag(ev, id) {
+    dragId = id;
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+    ev.currentTarget.classList.add("dragover");
+}
+
+function drop(ev, nuovaPriorita) {
+    ev.currentTarget.classList.remove("dragover");
+    ev.preventDefault();
+    if (!dragId) return;
+
+    fetch(API + "/" + dragId, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            titolo: datiGlobali.find(x => x.id === dragId).titolo,
+            data_scadenza: datiGlobali.find(x => x.id === dragId).data_scadenza,
+            priorita: nuovaPriorita
+        })
+    }).then(() => {
+        showToast("Priorità aggiornata");
+        carica();
+    });
+}
+
+(function initTheme(){
+    const t = localStorage.getItem("theme");
+    if(t === "light") document.body.classList.add("light");
+})();
+
+checkLogin().then(ok => {
+    if (ok) {
+        loadUser();
+        carica();
+    }
+});
+
+document.querySelectorAll('.col').forEach(col => {
+    col.addEventListener('dragleave', () => col.classList.remove('dragover'));
+});
+
+setInterval(controllaScadenze, 60000);
+function aggiornaBadge() {
+    const badge = document.getElementById("notifBadge");
+    if (!badge) return;
+
+    if (listaNotifiche.length > 0) {
+        badge.style.display = "block";
+        badge.innerText = listaNotifiche.length;
+    } else {
+        badge.style.display = "none";
+    }
+}
+
+function toggleNotificheDropdown() {
+    const dd = document.getElementById("notifDropdown");
+    const content = document.getElementById("notifContent");
+
+    if (dd.style.display === "block") {
+        dd.style.display = "none";
+        return;
+    }
+
+    aggiornaBadge();
+
+    if (listaNotifiche.length === 0) {
+        content.innerText = "Nessuna notifica";
+    } else {
+        content.innerHTML = listaNotifiche.map(n => "<div>" + n + "</div>").join("");
+    }
+
+    dd.style.display = "block";
+    listaNotifiche = [];
+    aggiornaBadge();
+}
+</script>
+
+</body>
+</html>
