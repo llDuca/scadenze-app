@@ -1,9 +1,45 @@
 const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+
+const DB_FILE = path.join(__dirname, 'database.json');
+const USERS_FILE = path.join(__dirname, 'users.json');
+
+function readJSON(file) {
+    try {
+        if (!fs.existsSync(file)) {
+            fs.writeFileSync(file, '[]');
+            return [];
+        }
+
+        const data = fs.readFileSync(file, 'utf-8');
+
+        if (!data || data.trim() === '') {
+            fs.writeFileSync(file, '[]');
+            return [];
+        }
+
+        return JSON.parse(data);
+    } catch (err) {
+        console.error("ERRORE PARSE JSON, RESET FILE:", err);
+        try {
+            fs.writeFileSync(file, '[]');
+        } catch (e) {}
+        return [];
+    }
+}
+
+function writeJSON(file, data) {
+    try {
+        fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
+        console.log('SCRITTURA OK:', file);
+    } catch (err) {
+        console.error('ERRORE SCRITTURA:', err);
+    }
+}
 
 const app = express();
 app.use(cors());
@@ -19,31 +55,6 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'frontend')));
-
-const db = new sqlite3.Database('./database.db');
-
-db.serialize(() => {
-    db.run(`
-    CREATE TABLE IF NOT EXISTS scadenze (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        titolo TEXT,
-        descrizione TEXT,
-        data_scadenza TEXT,
-        priorita TEXT DEFAULT 'bassa'
-    )
-    `);
-
-    db.run(`
-    CREATE TABLE IF NOT EXISTS utenti (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT,
-        ruolo TEXT
-    )
-    `);
-
-    db.run(`CREATE INDEX IF NOT EXISTS idx_scadenze_data ON scadenze(data_scadenza)`);
-});
 
 // PAGINA TEST REGISTRAZIONE (browser)
 app.get('/register', (req, res) => {
@@ -71,18 +82,26 @@ app.post('/register', async (req, res) => {
 
     const hash = await bcrypt.hash(password, 10);
 
-    db.run(
-        "INSERT INTO utenti (username, password, ruolo) VALUES (?, ?, ?)",
-        [username, hash, 'user'],
-        function(err) {
-            if (err) return res.status(500).json({ error: "utente già esistente" });
-            res.json({ created: true });
-        }
-    );
+    const users = readJSON(USERS_FILE);
+
+    if (users.find(u => u.username === username)) {
+        return res.status(500).json({ error: "utente già esistente" });
+    }
+
+    users.push({
+        id: Date.now(),
+        username,
+        password: hash,
+        ruolo: 'user'
+    });
+
+    writeJSON(USERS_FILE, users);
+
+    res.json({ created: true });
 });
 
 // LOGIN
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     // LOGIN HARDCODED TECNOTEL
@@ -95,24 +114,26 @@ app.post('/login', (req, res) => {
         return res.json({ login: true, user: req.session.user });
     }
 
-    db.get("SELECT * FROM utenti WHERE username = ?", [username], async (err, user) => {
-        if (err || !user) {
-            return res.status(401).json({ error: "utente non trovato" });
-        }
+    const users = readJSON(USERS_FILE);
+    const user = users.find(u => u.username === username);
 
-        const valid = await bcrypt.compare(password, user.password);
+    if (!user) {
+        return res.status(401).json({ error: "utente non trovato" });
+    }
 
-        if (!valid) {
-            return res.status(401).json({ error: "password errata" });
-        }
+    const valid = await bcrypt.compare(password, user.password);
 
-        req.session.user = { id: user.id, username: user.username, ruolo: user.ruolo };
-        // Se arriva da form HTML, fai redirect alla dashboard
-        if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
-            return res.redirect('/');
-        }
-        res.json({ login: true, user: req.session.user });
-    });
+    if (!valid) {
+        return res.status(401).json({ error: "password errata" });
+    }
+
+    req.session.user = { id: user.id, username: user.username, ruolo: user.ruolo };
+
+    if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
+        return res.redirect('/');
+    }
+
+    res.json({ login: true, user: req.session.user });
 });
 
 // CHECK LOGIN
@@ -148,26 +169,33 @@ app.get('/login', (req, res) => {
 app.get('/scadenze', (req, res) => {
     if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
 
-    db.all("SELECT * FROM scadenze ORDER BY data_scadenza ASC", [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(rows);
-    });
+    const dati = readJSON(DB_FILE);
+    res.json(dati);
 });
 
 app.post('/scadenze', (req, res) => {
+    console.log('BODY RICEVUTO:', req.body);
     const { titolo, descrizione, data_scadenza, priorita } = req.body;
     const prio = priorita || 'bassa';
     if (!titolo || !data_scadenza) {
         return res.status(400).json({ error: "titolo e data_scadenza obbligatori" });
     }
-    db.run(
-        "INSERT INTO scadenze (titolo, descrizione, data_scadenza, priorita) VALUES (?, ?, ?, ?)",
-        [titolo, descrizione, data_scadenza, prio],
-        function(err) {
-            if (err) return res.status(500).json({ error: err.message });
-            res.json({ id: this.lastID });
-        }
-    );
+
+    const dati = readJSON(DB_FILE);
+
+    const nuova = {
+        id: Date.now(),
+        titolo,
+        descrizione,
+        data_scadenza,
+        priorita: prio
+    };
+
+    dati.push(nuova);
+    writeJSON(DB_FILE, dati);
+    console.log('DATI SALVATI:', dati);
+
+    res.json(nuova);
 });
 
 app.put('/scadenze/:id', (req, res) => {
@@ -176,21 +204,29 @@ app.put('/scadenze/:id', (req, res) => {
     if (!titolo || !data_scadenza) {
         return res.status(400).json({ error: "titolo e data_scadenza obbligatori" });
     }
-    db.run(
-        "UPDATE scadenze SET titolo = ?, data_scadenza = ?, priorita = ? WHERE id = ?",
-        [titolo, data_scadenza, prio, req.params.id],
-        function(err) {
-            if (err) return res.status(500).json({ error: err.message });
-            res.json({ updated: true });
+
+    let dati = readJSON(DB_FILE);
+
+    dati = dati.map(s => {
+        if (s.id == req.params.id) {
+            return { ...s, titolo, data_scadenza, priorita: prio };
         }
-    );
+        return s;
+    });
+
+    writeJSON(DB_FILE, dati);
+
+    res.json({ updated: true });
 });
 
 app.delete('/scadenze/:id', (req, res) => {
-    db.run("DELETE FROM scadenze WHERE id = ?", req.params.id, function(err) {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ deleted: this.changes > 0 });
-    });
+    let dati = readJSON(DB_FILE);
+
+    const nuovaLista = dati.filter(s => s.id != req.params.id);
+
+    writeJSON(DB_FILE, nuovaLista);
+
+    res.json({ deleted: true });
 });
 
 app.get('/', (req, res) => {
