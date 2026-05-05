@@ -49,6 +49,46 @@ function normalizzaTesto(value) {
     return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
+function parseData(value) {
+    if (!value) return null;
+    if (value instanceof Date && !Number.isNaN(value.getTime())) return value;
+
+    const raw = String(value).trim();
+    let match = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (match) {
+        return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+
+    match = raw.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})$/);
+    if (match) {
+        let first = Number(match[1]);
+        let second = Number(match[2]);
+        let year = Number(match[3]);
+        const hasFullYear = match[3].length === 4;
+        if (year < 100) year += 2000;
+
+        const dayFirst = hasFullYear || first > 12;
+        const day = dayFirst ? first : second;
+        const month = dayFirst ? second : first;
+
+        return new Date(year, month - 1, day);
+    }
+
+    const parsed = new Date(raw);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function formattaData(value) {
+    const date = parseData(value);
+    if (!date) return value;
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear());
+
+    return `${day}/${month}/${year}`;
+}
+
 function creaClienteId(nome) {
     const pulito = normalizzaTesto(nome);
     const slug = pulito
@@ -160,7 +200,7 @@ function mappaRigaExcel(r, options = {}) {
         cliente,
         prodotto,
         tipo_licenza,
-        data_scadenza,
+        data_scadenza: formattaData(data_scadenza),
         rinnovo_mensile: Number(r.Rinnovo || r.rinnovo_mensile || r.mensilita || 0),
         note
     };
@@ -175,6 +215,7 @@ function salvaScadenza(scadenze, clienti, payload, options = {}) {
 
     const clienteRecord = ensureCliente(clienti, cliente);
     const notePulite = String(note || '').trim();
+    const dataFormattata = formattaData(data_scadenza);
     const esiste = scadenze.find(s =>
         s.cliente_id === clienteRecord.id &&
         s.prodotto === prodotto &&
@@ -187,7 +228,7 @@ function salvaScadenza(scadenze, clienti, payload, options = {}) {
             return { scadenza: esiste, creata: false, duplicata: true };
         }
 
-        esiste.data_scadenza = data_scadenza;
+        esiste.data_scadenza = dataFormattata;
         esiste.rinnovo_mensile = Number(rinnovo_mensile) || 0;
         esiste.note = notePulite;
         return { scadenza: esiste, creata: false, duplicata: false };
@@ -198,12 +239,12 @@ function salvaScadenza(scadenze, clienti, payload, options = {}) {
             cliente_id: clienteRecord.id,
             prodotto,
             tipo_licenza,
-            data_scadenza
+            data_scadenza: dataFormattata
         }),
         cliente_id: clienteRecord.id,
         prodotto,
         tipo_licenza,
-        data_scadenza,
+        data_scadenza: dataFormattata,
         rinnovo_mensile: Number(rinnovo_mensile) || 0,
         note: notePulite
     };
@@ -422,7 +463,7 @@ app.put('/scadenze/:id', (req, res) => {
                 cliente_id: clienteRecord.id,
                 prodotto,
                 tipo_licenza,
-                data_scadenza,
+                data_scadenza: formattaData(data_scadenza),
                 rinnovo_mensile: Number(rinnovo_mensile) || 0,
                 note: String(note || '').trim()
             };

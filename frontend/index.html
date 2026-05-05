@@ -604,6 +604,57 @@ function apiUrl(id) {
     return API + "/" + encodeURIComponent(String(id));
 }
 
+function parseData(value) {
+    if (!value) return null;
+    if (value instanceof Date && !Number.isNaN(value.getTime())) return value;
+
+    const raw = String(value).trim();
+    let match = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (match) {
+        return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+
+    match = raw.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})$/);
+    if (match) {
+        let first = Number(match[1]);
+        let second = Number(match[2]);
+        let year = Number(match[3]);
+        const hasFullYear = match[3].length === 4;
+        if (year < 100) year += 2000;
+
+        const dayFirst = hasFullYear || first > 12;
+        const day = dayFirst ? first : second;
+        const month = dayFirst ? second : first;
+
+        return new Date(year, month - 1, day);
+    }
+
+    const parsed = new Date(raw);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function formattaData(value) {
+    const date = parseData(value);
+    if (!date) return value || "";
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = String(date.getFullYear());
+
+    return `${day}/${month}/${year}`;
+}
+
+function dataPerInput(value) {
+    const date = parseData(value);
+    if (!date) return "";
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = String(date.getFullYear());
+
+    return `${year}-${month}-${day}`;
+}
+
 function nomeCliente(scadenza) {
     return scadenza.cliente || clientiById[scadenza.cliente_id] || "";
 }
@@ -611,7 +662,8 @@ function nomeCliente(scadenza) {
 function normalizzaScadenza(scadenza) {
     return {
         ...scadenza,
-        cliente: nomeCliente(scadenza)
+        cliente: nomeCliente(scadenza),
+        data_scadenza: formattaData(scadenza.data_scadenza)
     };
 }
 
@@ -655,7 +707,10 @@ function prioritaCalcolata(scadenza) {
 
 function giorniDiff(data) {
     const oggi = new Date();
-    const d = new Date(data);
+    oggi.setHours(0, 0, 0, 0);
+    const d = parseData(data);
+    if (!d) return 0;
+    d.setHours(0, 0, 0, 0);
     return Math.ceil((d - oggi) / (1000*60*60*24));
 }
 
@@ -667,7 +722,7 @@ function controllaScadenze() {
 
         // Notifica a 5 giorni o meno (non scadute)
         if (diff <= 5 && diff >= 0) {
-            const msg = s.cliente + " - " + s.prodotto + " - " + s.data_scadenza;
+            const msg = s.cliente + " - " + s.prodotto + " - " + formattaData(s.data_scadenza);
 
             // evita duplicati
             if (!listaNotifiche.includes(msg)) {
@@ -826,8 +881,8 @@ function ordinaAvanzato() {
     datiGlobali.sort((a, b) => {
         if (tipo === "data") {
             return ordineAsc
-                ? new Date(a.data_scadenza) - new Date(b.data_scadenza)
-                : new Date(b.data_scadenza) - new Date(a.data_scadenza);
+                ? parseData(a.data_scadenza) - parseData(b.data_scadenza)
+                : parseData(b.data_scadenza) - parseData(a.data_scadenza);
         }
 
         if (tipo === "titolo") {
@@ -857,7 +912,6 @@ function resetFiltri() {
 }
 
 function render(data) {
-    let tot = data.length;
     let urg = 0;
     let sca = 0;
 
@@ -868,10 +922,11 @@ function render(data) {
         if (diff < 0) sca++;
         else if (diff <= 3) urg++;
 
-        if (filtro === "urgenti") return diff <= 3 && diff >= 0;
         if (filtro === "scadute") return diff < 0;
-        return true;
+        if (filtro === "urgenti") return diff <= 3 && diff >= 0;
+        return diff >= 0;
     });
+    let tot = filtrati.length;
 
     document.getElementById("totali").innerText = "Totali: " + tot;
     document.getElementById("urgenti").innerText = "Urgenti: " + urg;
@@ -903,7 +958,7 @@ function render(data) {
                     <input class="edit-input" id="edit-cliente-${safeDomId}" value="${escapeHtml(s.cliente)}" placeholder="Cliente">
                     <input class="edit-input" id="edit-prodotto-${safeDomId}" value="${escapeHtml(s.prodotto)}" placeholder="Prodotto">
                     <input class="edit-input" id="edit-tipo-${safeDomId}" value="${escapeHtml(s.tipo_licenza)}" placeholder="Tipo licenza">
-                    <input class="edit-input" id="edit-data-${safeDomId}" type="date" value="${escapeHtml(s.data_scadenza)}">
+                    <input class="edit-input" id="edit-data-${safeDomId}" type="date" value="${escapeHtml(dataPerInput(s.data_scadenza))}">
                     <input class="edit-input" id="edit-rinnovo-${safeDomId}" type="number" value="${escapeHtml(s.rinnovo_mensile || 0)}" placeholder="Rinnovo (mesi)">
                     <textarea class="edit-input" id="edit-note-${safeDomId}" placeholder="Note">${escapeHtml(s.note || "")}</textarea>
                 </div>
@@ -919,7 +974,7 @@ function render(data) {
                 <div class="info">
                     <b>Cliente: ${escapeHtml(clienteNome || "Cliente non trovato")}</b><br>
                     Prodotto: ${escapeHtml(s.prodotto)} - ${escapeHtml(s.tipo_licenza)}<br>
-                    Scadenza: ${escapeHtml(s.data_scadenza)} (${diff} giorni)<br>
+                    Scadenza: ${escapeHtml(formattaData(s.data_scadenza))} (${diff} giorni)<br>
                     Rinnovo: ${escapeHtml(s.rinnovo_mensile || 0)} mesi
                     ${s.note ? `<div class="note">Note: ${escapeHtml(s.note)}</div>` : ""}
                 </div>
