@@ -125,11 +125,31 @@ function arricchisciScadenze(scadenze, clienti) {
     });
 }
 
-function mappaRigaExcel(r) {
+function estraiNoteDettagli(r) {
+    return Object.entries(r)
+        .filter(([key, value]) =>
+            normalizzaTesto(key).includes('dettagli') &&
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== ''
+        )
+        .map(([key, value]) => {
+            const label = String(key)
+                .replace(/_?dettagli_?/ig, ' ')
+                .replace(/_/g, ' ')
+                .trim() || 'Dettagli';
+
+            return `${label}: ${String(value).trim()}`;
+        })
+        .join('\n');
+}
+
+function mappaRigaExcel(r, options = {}) {
     const cliente = r.Cliente || r.cliente || r["Nome Cliente"];
-    const prodotto = r.Prodotto || r.prodotto || r["Software"];
+    const prodotto = r.Prodotto || r.prodotto || r["Software"] || options.prodottoDefault;
     const tipo_licenza = r["Tipo Licenza"] || r.Tipo || r.tipo_licenza || r.Licenza;
     let data_scadenza = r.Scadenza || r.data_scadenza || r["Data Scadenza"];
+    const note = r.Note || r.note || estraiNoteDettagli(r);
 
     if (typeof data_scadenza === 'number') {
         const date = XLSX.SSF.parse_date_code(data_scadenza);
@@ -141,22 +161,25 @@ function mappaRigaExcel(r) {
         prodotto,
         tipo_licenza,
         data_scadenza,
-        rinnovo_mensile: Number(r.Rinnovo || r.rinnovo_mensile || r.mensilita || 0)
+        rinnovo_mensile: Number(r.Rinnovo || r.rinnovo_mensile || r.mensilita || 0),
+        note
     };
 }
 
 function salvaScadenza(scadenze, clienti, payload, options = {}) {
-    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile } = payload;
+    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile, note } = payload;
 
     if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
         return null;
     }
 
     const clienteRecord = ensureCliente(clienti, cliente);
+    const notePulite = String(note || '').trim();
     const esiste = scadenze.find(s =>
         s.cliente_id === clienteRecord.id &&
         s.prodotto === prodotto &&
-        s.tipo_licenza === tipo_licenza
+        s.tipo_licenza === tipo_licenza &&
+        normalizzaTesto(s.note || '') === normalizzaTesto(notePulite)
     );
 
     if (esiste) {
@@ -166,6 +189,7 @@ function salvaScadenza(scadenze, clienti, payload, options = {}) {
 
         esiste.data_scadenza = data_scadenza;
         esiste.rinnovo_mensile = Number(rinnovo_mensile) || 0;
+        esiste.note = notePulite;
         return { scadenza: esiste, creata: false, duplicata: false };
     }
 
@@ -180,14 +204,15 @@ function salvaScadenza(scadenze, clienti, payload, options = {}) {
         prodotto,
         tipo_licenza,
         data_scadenza,
-        rinnovo_mensile: Number(rinnovo_mensile) || 0
+        rinnovo_mensile: Number(rinnovo_mensile) || 0,
+        note: notePulite
     };
 
     scadenze.push(nuova);
     return { scadenza: nuova, creata: true, duplicata: false };
 }
 
-function importaDaFileExcel(filePath) {
+function importaDaFileExcel(filePath, options = {}) {
     if (!fs.existsSync(filePath)) {
         return { imported: false, message: 'File Excel non trovato', totale: 0, aggiunte: 0 };
     }
@@ -202,7 +227,7 @@ function importaDaFileExcel(filePath) {
     let aggiornate = 0;
 
     rows.forEach(r => {
-        const result = salvaScadenza(scadenze, clienti, mappaRigaExcel(r), { aggiornaEsistente: true });
+        const result = salvaScadenza(scadenze, clienti, mappaRigaExcel(r, options), { aggiornaEsistente: true });
         if (result?.creata) aggiunte++;
         else if (result && !result.duplicata) aggiornate++;
     });
@@ -346,7 +371,7 @@ app.get('/clienti', (req, res) => {
 app.post('/scadenze', (req, res) => {
     console.log('BODY RICEVUTO:', req.body);
 
-    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile } = req.body;
+    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile, note } = req.body;
 
     if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
         return res.status(400).json({ error: "campi obbligatori mancanti" });
@@ -359,7 +384,8 @@ app.post('/scadenze', (req, res) => {
         prodotto,
         tipo_licenza,
         data_scadenza,
-        rinnovo_mensile
+        rinnovo_mensile,
+        note
     });
 
     if (!result || result.duplicata) {
@@ -379,7 +405,7 @@ app.post('/scadenze', (req, res) => {
 });
 
 app.put('/scadenze/:id', (req, res) => {
-    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile } = req.body;
+    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile, note } = req.body;
 
     if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
         return res.status(400).json({ error: "campi obbligatori mancanti" });
@@ -397,7 +423,8 @@ app.put('/scadenze/:id', (req, res) => {
                 prodotto,
                 tipo_licenza,
                 data_scadenza,
-                rinnovo_mensile: Number(rinnovo_mensile) || 0
+                rinnovo_mensile: Number(rinnovo_mensile) || 0,
+                note: String(note || '').trim()
             };
         }
         return s;
@@ -425,12 +452,17 @@ app.get('/', (req, res) => {
 
 function importaExcelAutomatico() {
     try {
-        const filePath = path.join(__dirname, 'Licenze3CX.xlsx');
+        const imports = [
+            { filePath: path.join(__dirname, 'Licenze3CX.xlsx') },
+            { filePath: path.join(__dirname, 'LicenzeFortigate.xlsx'), prodottoDefault: 'Fortigate' }
+        ];
 
-        const result = importaDaFileExcel(filePath);
-        if (!result.imported) return console.log(result.message);
+        imports.forEach(importConfig => {
+            const result = importaDaFileExcel(importConfig.filePath, importConfig);
+            if (!result.imported) return console.log(result.message);
 
-        console.log("IMPORT AUTOMATICO OK:", result);
+            console.log("IMPORT AUTOMATICO OK:", path.basename(importConfig.filePath), result);
+        });
 
     } catch (err) {
         console.error("ERRORE IMPORT AUTO:", err);
@@ -455,6 +487,23 @@ app.post('/import-excel', (req, res) => {
     }
 });
 
+app.post('/import-fortigate', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'LicenzeFortigate.xlsx');
+        const result = importaDaFileExcel(filePath, { prodottoDefault: 'Fortigate' });
+
+        if (!result.imported) {
+            return res.status(400).json({ error: result.message });
+        }
+
+        res.json(result);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Errore import Fortigate' });
+    }
+});
+
 app.get('/import-excel', (req, res) => {
     try {
         const filePath = path.join(__dirname, 'Licenze3CX.xlsx');
@@ -469,6 +518,23 @@ app.get('/import-excel', (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Errore import');
+    }
+});
+
+app.get('/import-fortigate', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'LicenzeFortigate.xlsx');
+        const result = importaDaFileExcel(filePath, { prodottoDefault: 'Fortigate' });
+
+        if (!result.imported) {
+            return res.status(400).send(result.message);
+        }
+
+        res.send(`Import Fortigate completato. Aggiunte: ${result.aggiunte}. Aggiornate: ${result.aggiornate}. Totale scadenze: ${result.totale}`);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Errore import Fortigate');
     }
 });
 

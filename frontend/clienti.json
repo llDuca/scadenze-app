@@ -158,5 +158,175 @@
     "id": "cli_v-veneto-assicurazioni_3dd50f8438",
     "nome": "V.Veneto Assicurazioni",
     "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "nome": "Asrem - Azienda Sanitaria Regionale Molise",
+    "created_at": "2026-05-05T15:37:42.775Z"
+  },
+  {
+    "id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "nome": "Tecnotel Servizi SRL",
+    "created_at": "2026-05-05T15:37:42.779Z"
+  },
+  {
+    "id": "cli_medical-center-srl_980a8f5528",
+    "nome": "Medical Center SRL",
+    "created_at": "2026-05-05T15:37:42.779Z"
+  },
+  {
+    "id": "cli_molise-dati-spa_b5ce931f31",
+    "nome": "Molise Dati SPA",
+    "created_at": "2026-05-05T15:37:42.779Z"
+  },
+  {
+    "id": "cli_notaio-pilla-dr-nicola_7061ea855d",
+    "nome": "Notaio Pilla Dr. Nicola",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_italmedia-s-r-l_8485ae2a17",
+    "nome": "Italmedia S.r.l.",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_studio-legale-pietrunti-pietrunti_26a2246315",
+    "nome": "Studio Legale Pietrunti&pietrunti",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_pulisud_7ca22126a4",
+    "nome": "Pulisud",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_edinext-srl-enterprise-digital-and-innov_4187be29e5",
+    "nome": "Edinext Srl Enterprise Digital And Innovation Next",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_pegaso-srl_7ada10d1aa",
+    "nome": "Pegaso Srl",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_comune-di-limosano_e4a26b5226",
+    "nome": "Comune Di Limosano",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_meca-poce_78577e2102",
+    "nome": "Meca Poce",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_centro-di-salute-dentale-garocchio_f5a1d429cd",
+    "nome": "Centro Di Salute Dentale Garocchio",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_parati-4-erre-snc_a5788b71a4",
+    "nome": "Parati 4 Erre Snc",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_siltes_396c3cec5b",
+    "nome": "Siltes",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_studio-eko_a651095e3f",
+    "nome": "Studio Eko",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_studio-dentistico-barone_e28c017cd5",
+    "nome": "Studio Dentistico Barone",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_comune-di-roccamandolfi_455b8f1703",
+    "nome": "Comune di Roccamandolfi",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_sorgenia_318e1b474a",
+    "nome": "Sorgenia",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_seram_54abd68b9b",
+    "nome": "Seram",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_notaio-colavita_90eaf5a18e",
+    "nome": "Notaio Colavita",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_neulift-service-molise-srl_fda1475568",
+    "nome": "Neulift Service Molise Srl",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_studio-d-agata_c1c7573426",
+    "nome": "Studio D'Agata",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_autosalone-romano_028c109d17",
+    "nome": "Autosalone Romano",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "nome": "Comune di Montenero di Bisaccia",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_sifer-srl_8bb7af316c",
+    "nome": "Sifer Srl",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_agenzia-regionale-per-la-protezione-dell_9348a8a0e5",
+    "nome": "Agenzia Regionale Per La Protezione Dell'ambiente",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_fondazione-molise-cultura_87fad4a3cf",
+    "nome": "Fondazione Molise Cultura",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "nome": "SVILUPPO ITALIA MOLISE S.P.A.",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_consorzio-mediolanum-cb-1_6d6c3d49e2",
+    "nome": "Consorzio Mediolanum CB 1",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_planetcall-direct-srl_b09e58aa57",
+    "nome": "Planetcall Direct Srl",
+    "created_at": "2026-05-05T15:37:42.780Z"
+  },
+  {
+    "id": "cli_v-veneto-assicurazioni-srl_f472f51af4",
+    "nome": "V. Veneto Assicurazioni Srl",
+    "created_at": "2026-05-05T15:37:42.781Z"
+  },
+  {
+    "id": "cli_sallustio-infissi_cdb2037703",
+    "nome": "Sallustio Infissi",
+    "created_at": "2026-05-05T15:37:42.781Z"
+  },
+  {
+    "id": "cli_ind-al-co-s-p-a_f51e5e1051",
+    "nome": "Ind.al.co S.p.a.",
+    "created_at": "2026-05-05T15:37:42.781Z"
   }
 ]

@@ -5,7 +5,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "2/18/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115"
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "note": ""
   },
   {
     "id": "sca_7a83bdb0cebfb6ef",
@@ -13,7 +14,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "1/18/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_arpa-molise_0928633eb6"
+    "cliente_id": "cli_arpa-molise_0928633eb6",
+    "note": ""
   },
   {
     "id": "sca_c3a611af6e6e22ba",
@@ -21,7 +23,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "3/11/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_asec-formazione_4efd4381c7"
+    "cliente_id": "cli_asec-formazione_4efd4381c7",
+    "note": ""
   },
   {
     "id": "sca_7904696145c0b3a4",
@@ -29,7 +32,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "11/10/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_asrem_b988f891c1"
+    "cliente_id": "cli_asrem_b988f891c1",
+    "note": ""
   },
   {
     "id": "sca_42638a20f411db56",
@@ -37,7 +41,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "5/28/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f"
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "note": ""
   },
   {
     "id": "sca_017f9c1faca7d4c0",
@@ -45,7 +50,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "2/19/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_camardo-s-p-a_ffb0f7af2a"
+    "cliente_id": "cli_camardo-s-p-a_ffb0f7af2a",
+    "note": ""
   },
   {
     "id": "sca_defe144c9de188d0",
@@ -53,7 +59,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "6/12/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_comune-di-oratino_1abb6a05c4"
+    "cliente_id": "cli_comune-di-oratino_1abb6a05c4",
+    "note": ""
   },
   {
     "id": "sca_38148d256d1569c3",
@@ -61,7 +68,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "3/11/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_comune-roccamandolfi_6cc1ef1a97"
+    "cliente_id": "cli_comune-roccamandolfi_6cc1ef1a97",
+    "note": ""
   },
   {
     "id": "sca_976e9554662f0f05",
@@ -69,7 +77,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/7/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_consorzio-per-lo-sviluppo-industriale-di_617fb8b080"
+    "cliente_id": "cli_consorzio-per-lo-sviluppo-industriale-di_617fb8b080",
+    "note": ""
   },
   {
     "id": "sca_9a8dd9432bc86bb6",
@@ -77,7 +86,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/13/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_diocesi-di-trivento_ebb7b9cc3a"
+    "cliente_id": "cli_diocesi-di-trivento_ebb7b9cc3a",
+    "note": ""
   },
   {
     "id": "sca_27a1e72d90d9627c",
@@ -85,7 +95,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "4/13/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_edinext-srl_7e3c846925"
+    "cliente_id": "cli_edinext-srl_7e3c846925",
+    "note": ""
   },
   {
     "id": "sca_552fda21fec4ee27",
@@ -93,7 +104,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "9/6/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_emmepi-srl_f809a6a95c"
+    "cliente_id": "cli_emmepi-srl_f809a6a95c",
+    "note": ""
   },
   {
     "id": "sca_e48cd314dd828fcf",
@@ -101,7 +113,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "9/5/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_farmacia-marino_01fd6b9547"
+    "cliente_id": "cli_farmacia-marino_01fd6b9547",
+    "note": ""
   },
   {
     "id": "sca_bc017a00ccfcd06e",
@@ -109,7 +122,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "5/30/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_gruppo-marchetti_d7a2ccc3f6"
+    "cliente_id": "cli_gruppo-marchetti_d7a2ccc3f6",
+    "note": ""
   },
   {
     "id": "sca_0607ebe6b494021f",
@@ -117,7 +131,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/19/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_hotel-iris_d585c6a8b9"
+    "cliente_id": "cli_hotel-iris_d585c6a8b9",
+    "note": ""
   },
   {
     "id": "sca_27199815088e6b81",
@@ -125,7 +140,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "5/30/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_ind-al-co-s-p-a_96fa35cc0a"
+    "cliente_id": "cli_ind-al-co-s-p-a_96fa35cc0a",
+    "note": ""
   },
   {
     "id": "sca_9bc3b1db7c15e0fb",
@@ -133,7 +149,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/7/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_italimedia-s-r-l_79b558e75f"
+    "cliente_id": "cli_italimedia-s-r-l_79b558e75f",
+    "note": ""
   },
   {
     "id": "sca_a388ec02d80a0b8c",
@@ -141,7 +158,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "1/6/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_medical-center-s-r-l_62435967b4"
+    "cliente_id": "cli_medical-center-s-r-l_62435967b4",
+    "note": ""
   },
   {
     "id": "sca_6ba2a5097e449542",
@@ -149,7 +167,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "8/23/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_mediolanum-campobasso_9be45e48a6"
+    "cliente_id": "cli_mediolanum-campobasso_9be45e48a6",
+    "note": ""
   },
   {
     "id": "sca_759ea8a2a0e45126",
@@ -157,7 +176,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "3/27/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_mm-holding-srl_1bc068dd25"
+    "cliente_id": "cli_mm-holding-srl_1bc068dd25",
+    "note": ""
   },
   {
     "id": "sca_4f6f72b44e1902c4",
@@ -165,7 +185,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "10/18/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_molise-dati_e73b25ebc5"
+    "cliente_id": "cli_molise-dati_e73b25ebc5",
+    "note": ""
   },
   {
     "id": "sca_7b532a7cba6c7548",
@@ -173,7 +194,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/7/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_neulift-service-molise_3ed73079f8"
+    "cliente_id": "cli_neulift-service-molise_3ed73079f8",
+    "note": ""
   },
   {
     "id": "sca_8e333f5bd8fdf645",
@@ -181,7 +203,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "6/18/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_planetcall-direct_77907fefc6"
+    "cliente_id": "cli_planetcall-direct_77907fefc6",
+    "note": ""
   },
   {
     "id": "sca_3f39be898407c280",
@@ -189,7 +212,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "2/28/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_pro-ma-srl_7cf1ea620e"
+    "cliente_id": "cli_pro-ma-srl_7cf1ea620e",
+    "note": ""
   },
   {
     "id": "sca_4e200a62620cd7ce",
@@ -197,7 +221,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/31/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_regione-molise_46f65c598b"
+    "cliente_id": "cli_regione-molise_46f65c598b",
+    "note": ""
   },
   {
     "id": "sca_113c521aa4922816",
@@ -205,7 +230,8 @@
     "tipo_licenza": "BASIC",
     "data_scadenza": "3/20/27",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_siltes-srl_cc773cb806"
+    "cliente_id": "cli_siltes-srl_cc773cb806",
+    "note": ""
   },
   {
     "id": "sca_291aa8ae92fc3d4e",
@@ -213,7 +239,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "10/13/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_studio-dentistico-barone-giuliano_26fe83d488"
+    "cliente_id": "cli_studio-dentistico-barone-giuliano_26fe83d488",
+    "note": ""
   },
   {
     "id": "sca_6d128dba70f99a4a",
@@ -221,7 +248,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "8/26/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_studio-notarile-colavita_f97db47390"
+    "cliente_id": "cli_studio-notarile-colavita_f97db47390",
+    "note": ""
   },
   {
     "id": "sca_627ebb7292adfaed",
@@ -229,7 +257,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "12/7/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_studio-notarile-pilla_00c1cdd711"
+    "cliente_id": "cli_studio-notarile-pilla_00c1cdd711",
+    "note": ""
   },
   {
     "id": "sca_1492116d9e61f1a5",
@@ -237,7 +266,8 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "6/3/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_sviluppo-italia-molise-spa_056bdcdfdf"
+    "cliente_id": "cli_sviluppo-italia-molise-spa_056bdcdfdf",
+    "note": ""
   },
   {
     "id": "sca_0be65e994018d273",
@@ -245,7 +275,8 @@
     "tipo_licenza": "Enterprise / AI",
     "data_scadenza": "1/1/35",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_tecnotel-servizi-s-r-l_a42df7848c"
+    "cliente_id": "cli_tecnotel-servizi-s-r-l_a42df7848c",
+    "note": ""
   },
   {
     "id": "sca_971a7bd0d5140d32",
@@ -253,6 +284,700 @@
     "tipo_licenza": "PRO",
     "data_scadenza": "5/21/26",
     "rinnovo_mensile": 12,
-    "cliente_id": "cli_v-veneto-assicurazioni_3dd50f8438"
+    "cliente_id": "cli_v-veneto-assicurazioni_3dd50f8438",
+    "note": ""
+  },
+  {
+    "id": "sca_d19cb2956c518f48",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 2600F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-CB-CARD-2600F-MASTER\nseriale: F2K60FTK23900523\nregistrazione: 11/29/23"
+  },
+  {
+    "id": "sca_e1680eb929f14ddd",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 2600F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-CB-CARD-2600F-SLAVE\nseriale: F2K60FTK23900547\nregistrazione: 11/29/23"
+  },
+  {
+    "id": "sca_9b630d855f4c6cfb",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 100F",
+    "data_scadenza": "1/1/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW-SCORTA-2\nseriale: FG100FTK22044137\nregistrazione: 7/10/23"
+  },
+  {
+    "id": "sca_aa19af31ec8c9194",
+    "cliente_id": "cli_medical-center-srl_980a8f5528",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 100F",
+    "data_scadenza": "6/30/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-MEDICAL\nseriale: FG100FTK23048616\nregistrazione: 6/28/24"
+  },
+  {
+    "id": "sca_746c7b3d36948712",
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 100F",
+    "data_scadenza": "1/21/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-BIOGROUP\nseriale: FG100FTK23051653\nregistrazione: 12/9/24"
+  },
+  {
+    "id": "sca_1923a9f03aaee1c6",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 1100E",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-TE-PO-1100E-MASTER\nseriale: FG10E0TB23900459\nregistrazione: 12/13/23"
+  },
+  {
+    "id": "sca_27c4d0bee0041287",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 1100E",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-TE-PO-1100E-SLAVE\nseriale: FG10E0TB23900460\nregistrazione: 12/13/23"
+  },
+  {
+    "id": "sca_7c21a86dc3b9cc5a",
+    "cliente_id": "cli_molise-dati-spa_b5ce931f31",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 1100E",
+    "data_scadenza": "6/19/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ASREM-MOLDATI-1100E-MASTER\nseriale: FG10E0TB23900485\nregistrazione: 2/2/24"
+  },
+  {
+    "id": "sca_ab368610e8bd41e8",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 1100E",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-IS-PO-1100E-SLAVE\nseriale: FG10E0TB23900512\nregistrazione: 12/13/23"
+  },
+  {
+    "id": "sca_f360206e16b734d3",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 1100E",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-IS-PO-1100E-MASTER\nseriale: FG10E0TB23900526\nregistrazione: 12/13/23"
+  },
+  {
+    "id": "sca_1f0566d295e24111",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 1100E",
+    "data_scadenza": "6/19/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ASREM-MOLDATI-1100E-SLAVE\nseriale: FG10E0TB23900641\nregistrazione: 2/2/24"
+  },
+  {
+    "id": "sca_e2e5ebc68954dcfe",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-LA-PO-200F-MASTER\nseriale: FG200FT923912073\nregistrazione: 12/11/23"
+  },
+  {
+    "id": "sca_c65411bf54d07c6a",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-VE-PO-200F-MASTER\nseriale: FG200FT923912097\nregistrazione: 12/11/23"
+  },
+  {
+    "id": "sca_046e11ed9a9f6d19",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-LA-PO-200F-SLAVE\nseriale: FG200FT923912142\nregistrazione: 12/11/23"
+  },
+  {
+    "id": "sca_1ac1bcfa1c492594",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-TE-PA-200F-SLAVE\nseriale: FG200FT923912148\nregistrazione: 12/5/23"
+  },
+  {
+    "id": "sca_11e22fa4805a339f",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-TE-PA-200F-MASTER\nseriale: FG200FT923912150\nregistrazione: 12/5/23"
+  },
+  {
+    "id": "sca_3290f836acc9b18d",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-VE-PO-200F-SLAVE\nseriale: FG200FT923912227\nregistrazione: 12/11/23"
+  },
+  {
+    "id": "sca_2b5caad08eecb4ca",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-AG-PO-200F-SLAVE\nseriale: FG200FT923915412\nregistrazione: 12/4/23"
+  },
+  {
+    "id": "sca_60e98326f74d40a3",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 200F",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-AG-PO-200F-MASTER\nseriale: FG200FT923915424\nregistrazione: 12/4/23"
+  },
+  {
+    "id": "sca_6554ccbc37032b5b",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 600E",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-CB-PA-600E-SLAVE\nseriale: FG6H0ETB22905595\nregistrazione: 12/4/23"
+  },
+  {
+    "id": "sca_6767ba1b70a418fc",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 600E",
+    "data_scadenza": "12/12/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-CB-PA-600E-MASTER\nseriale: FG6H0ETB22905603\nregistrazione: 11/30/23"
+  },
+  {
+    "id": "sca_a5dc952550119c2e",
+    "cliente_id": "cli_notaio-pilla-dr-nicola_7061ea855d",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FortiGate-PILLA\nseriale: FGT40FTK20047925\nregistrazione: 3/5/21"
+  },
+  {
+    "id": "sca_3e9a4c380145f983",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/1/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW-SCORTA-3\nseriale: FGT40FTK20049308\nregistrazione: 3/5/21"
+  },
+  {
+    "id": "sca_f2e378e5f025f23e",
+    "cliente_id": "cli_italmedia-s-r-l_8485ae2a17",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ITALMEDIA\nseriale: FGT40FTK21001747\nregistrazione: 6/21/21"
+  },
+  {
+    "id": "sca_ad1383fcbc834e70",
+    "cliente_id": "cli_studio-legale-pietrunti-pietrunti_26a2246315",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-Pietrunti\nseriale: FGT40FTK21085003\nregistrazione: 11/11/21"
+  },
+  {
+    "id": "sca_745d237098312508",
+    "cliente_id": "cli_pulisud_7ca22126a4",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "6/10/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-PULISUD\nseriale: FGT40FTK2109ABGB\nregistrazione: 8/2/24"
+  },
+  {
+    "id": "sca_37d375f2472f9c9b",
+    "cliente_id": "cli_edinext-srl-enterprise-digital-and-innov_4187be29e5",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/17/24",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-EDINEXT\nseriale: FGT40FTK2109AC7F\nregistrazione: 1/7/22"
+  },
+  {
+    "id": "sca_94952ccb66d54e54",
+    "cliente_id": "cli_pegaso-srl_7ada10d1aa",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "7/30/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-PEGASO\nseriale: FGT40FTK22026156\nregistrazione: 7/25/22"
+  },
+  {
+    "id": "sca_e51f80b553fa6f8e",
+    "cliente_id": "cli_comune-di-limosano_e4a26b5226",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "3/11/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SCUOLA-LIMOSANO\nseriale: FGT40FTK22026968\nregistrazione: 7/25/22"
+  },
+  {
+    "id": "sca_b5464f646c5d498e",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-02-TERM\nseriale: FGT40FTK22026989\nregistrazione: 1/31/27"
+  },
+  {
+    "id": "sca_445bd73fa0eaab39",
+    "cliente_id": "cli_asec-formazione_4efd4381c7",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "2/2/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ASEC\nseriale: FGT40FTK22027075\nregistrazione: 12/19/22"
+  },
+  {
+    "id": "sca_370d5161a54b795a",
+    "cliente_id": "cli_comune-di-oratino_1abb6a05c4",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ORATINO\nseriale: FGT40FTK22028565\nregistrazione: 1/25/23"
+  },
+  {
+    "id": "sca_01860061aa209c03",
+    "cliente_id": "cli_centro-di-salute-dentale-garocchio_f5a1d429cd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "7/29/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-Garocchio\nseriale: FGT40FTK22030645\nregistrazione: 7/20/22"
+  },
+  {
+    "id": "sca_e946b748e6bcf56f",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-05-VASTO\nseriale: FGT40FTK22030782\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_ac64fff9d39473ce",
+    "cliente_id": "cli_parati-4-erre-snc_a5788b71a4",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "9/5/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: fw-parati4erre\nseriale: FGT40FTK22031243\nregistrazione: 8/24/22"
+  },
+  {
+    "id": "sca_4da85558d6183bbd",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-11-CB-INT\nseriale: FGT40FTK2209BL87\nregistrazione: 3/20/23"
+  },
+  {
+    "id": "sca_c273a10a997cb505",
+    "cliente_id": "cli_siltes_396c3cec5b",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "12/31/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-Siltes\nseriale: FGT40FTK2209BNHC\nregistrazione: 11/15/22"
+  },
+  {
+    "id": "sca_3802ed048ba6bac4",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-06-ORTONA\nseriale: FGT40FTK2209BRCW\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_27eb919f53ee7c1b",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-10-CB-CAL\nseriale: FGT40FTK2209BRPL\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_91ce4befc38772a9",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-04-CB-ABBIG\nseriale: FGT40FTK2209BY3E\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_38af511fd5dcd69b",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-08-ASCOLI\nseriale: FGT40FTK2209BYS6\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_f2f73cdc7419913d",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-07-ROCCA\nseriale: FGT40FTK2209BZCZ\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_6ba27cdbcfe618cb",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-09-IS\nseriale: FGT40FTK2209BZJ2\nregistrazione: 12/22/22"
+  },
+  {
+    "id": "sca_0a5583954dba1d3f",
+    "cliente_id": "cli_hotel-iris_d585c6a8b9",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "12/6/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-IRIS\nseriale: FGT40FTK2209CYSS\nregistrazione: 11/28/23"
+  },
+  {
+    "id": "sca_e7a328b9ebcbdddb",
+    "cliente_id": "cli_studio-eko_a651095e3f",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "6/13/24",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-STUDIO-EKO\nseriale: FGT40FTK2209CZ45\nregistrazione: 12/5/23"
+  },
+  {
+    "id": "sca_08400c52cfeff5f2",
+    "cliente_id": "cli_studio-dentistico-barone_e28c017cd5",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "6/13/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: BARONE-FW\nseriale: FGT40FTK2209D2UZ\nregistrazione: 10/24/23"
+  },
+  {
+    "id": "sca_6fed7b13e370fcc0",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/1/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW-SCORTA-4\nseriale: FGT40FTK2209D2VG\nregistrazione: 1/16/24"
+  },
+  {
+    "id": "sca_11e1a4c6a1b3e4ac",
+    "cliente_id": "cli_comune-di-roccamandolfi_455b8f1703",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "8/21/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ROCCAMANDOLFI-SCUOLA\nseriale: FGT40FTK2209D2WX\nregistrazione: 8/21/26"
+  },
+  {
+    "id": "sca_c18cccf6663fe677",
+    "cliente_id": "cli_sorgenia_318e1b474a",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "6/15/24",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SORGENIA\nseriale: FGT40FTK23002606\nregistrazione: 6/14/23"
+  },
+  {
+    "id": "sca_16d4471e46789588",
+    "cliente_id": "cli_seram_54abd68b9b",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "7/15/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SERAM\nseriale: FGT40FTK2309F34F\nregistrazione: 7/15/24"
+  },
+  {
+    "id": "sca_9b48748979e5f714",
+    "cliente_id": "cli_notaio-colavita_90eaf5a18e",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "9/9/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-COLAVITA\nseriale: FGT40FTK2309F3A2\nregistrazione: 9/9/24"
+  },
+  {
+    "id": "sca_e5a3d1c5f17f6cbf",
+    "cliente_id": "cli_neulift-service-molise-srl_fda1475568",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "7/16/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-NEULIFT\nseriale: FGT40FTK2309F3H2\nregistrazione: 7/15/24"
+  },
+  {
+    "id": "sca_bc222e56bf04dd52",
+    "cliente_id": "cli_studio-d-agata_c1c7573426",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/20/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-DAGATA\nseriale: FGT40FTK24056850\nregistrazione: 1/20/25"
+  },
+  {
+    "id": "sca_ffd62b4d29d39281",
+    "cliente_id": "cli_comune-di-roccamandolfi_455b8f1703",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "10/17/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ROCCAMANDOLFI-COMUNE\nseriale: FGT40FTK24060762\nregistrazione: 10/17/24"
+  },
+  {
+    "id": "sca_b4a1a6bec9544c49",
+    "cliente_id": "cli_autosalone-romano_028c109d17",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "2/15/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ROMANO\nseriale: FGT40FTK24092402\nregistrazione: 2/15/25"
+  },
+  {
+    "id": "sca_803f7262f129c086",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA MAGAZZINO\nseriale: FGT40FTK24093135\nregistrazione: 2/15/25"
+  },
+  {
+    "id": "sca_da76d0a35fe0f99d",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "11/19/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-MONTENERO-POLIZIA\nseriale: FGT40FTK25063872\nregistrazione: 11/19/25"
+  },
+  {
+    "id": "sca_37456a295198475c",
+    "cliente_id": "cli_medical-center-srl_980a8f5528",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "2/3/24",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-DESIDERIO\nseriale: FGT60FTK20090791\nregistrazione: 2/4/21"
+  },
+  {
+    "id": "sca_e0c40db9a216c29f",
+    "cliente_id": "cli_sifer-srl_8bb7af316c",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "2/19/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SIFER\nseriale: FGT60FTK20099Y58\nregistrazione: 10/8/21"
+  },
+  {
+    "id": "sca_d220cb333aba17d9",
+    "cliente_id": "cli_agenzia-regionale-per-la-protezione-dell_9348a8a0e5",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "10/23/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-ARPA\nseriale: FGT60FTK21052284\nregistrazione: 10/8/21"
+  },
+  {
+    "id": "sca_7f595f27acc075f4",
+    "cliente_id": "cli_fondazione-molise-cultura_87fad4a3cf",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-FONDCULT\nseriale: FGT60FTK21072216\nregistrazione: 11/22/21"
+  },
+  {
+    "id": "sca_511d1585f9bfe2fe",
+    "cliente_id": "cli_comune-di-limosano_e4a26b5226",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "3/11/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-COMUNE-LIMOSANO\nseriale: FGT60FTK22026119\nregistrazione: 6/29/23"
+  },
+  {
+    "id": "sca_abcc6e62ecfeef45",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "7/2/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SVITMOLISE\nseriale: FGT60FTK22033076\nregistrazione: 6/27/23"
+  },
+  {
+    "id": "sca_4e204c745c9725dd",
+    "cliente_id": "cli_consorzio-mediolanum-cb-1_6d6c3d49e2",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "8/21/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-MEDIOLANUM\nseriale: FGT60FTK22033937\nregistrazione: 6/26/23"
+  },
+  {
+    "id": "sca_33a66697c7300e48",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "2/19/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SEMIOTIC\nseriale: FGT60FTK22034394\nregistrazione: 11/15/23"
+  },
+  {
+    "id": "sca_874c1419f5d60410",
+    "cliente_id": "cli_v-veneto-assicurazioni-srl_f472f51af4",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "8/21/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-BUCCI\nseriale: FGT60FTK2209F46A\nregistrazione: 7/9/24"
+  },
+  {
+    "id": "sca_07d0b61330c06c8a",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "3/19/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW\nseriale: FGT60FTK2209F9W5\nregistrazione: 6/3/24"
+  },
+  {
+    "id": "sca_a8f974a22f556fe8",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "1/1/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW-SCORTA-1\nseriale: FGT60FTK2209F9ZY\nregistrazione: 6/3/24"
+  },
+  {
+    "id": "sca_ee33520bfe67d53f",
+    "cliente_id": "cli_camardo-s-p-a_ffb0f7af2a",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 70F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-Camardo\nseriale: FGT70FTK22018084\nregistrazione: 2/14/24"
+  },
+  {
+    "id": "sca_2c0205d5f4142ce1",
+    "cliente_id": "cli_sallustio-infissi_cdb2037703",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 70F",
+    "data_scadenza": "5/17/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-SALLUSTIO\nseriale: FGT70FTK22018180\nregistrazione: 3/26/24"
+  },
+  {
+    "id": "sca_7f088864db05c73d",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 70F",
+    "data_scadenza": "11/19/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-MONTENERO-COMUNE\nseriale: FGT70FTK23029177\nregistrazione: 11/19/25"
+  },
+  {
+    "id": "sca_b3e32b7b23cffd47",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 80F",
+    "data_scadenza": "1/1/25",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW-ARMANDO\nseriale: FGT80FTK20004640\nregistrazione: 10/7/21"
+  },
+  {
+    "id": "sca_518e0f7077595de7",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 80F",
+    "data_scadenza": "1/31/27",
+    "rinnovo_mensile": 12,
+    "note": "posizione: MECA-FW-01-RIPA\nseriale: FGT80FTK22039600\nregistrazione: 12/19/22"
+  },
+  {
+    "id": "sca_5b2b649c23e81650",
+    "cliente_id": "cli_farmacia-marino_01fd6b9547",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiWiFi 40F",
+    "data_scadenza": "9/16/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: fw-marino\nseriale: FWF40FTK23002363\nregistrazione: 3/11/24"
+  },
+  {
+    "id": "sca_57d451dbdb68764f",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 80F",
+    "data_scadenza": "2/22/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-PROV-ISERNIA\nseriale: FGT80FTK22035648\nregistrazione: 2/14/24"
+  },
+  {
+    "id": "sca_c98c1b7cdd43a1b7",
+    "cliente_id": "cli_ind-al-co-s-p-a_f51e5e1051",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 60F",
+    "data_scadenza": "2/19/28",
+    "rinnovo_mensile": 12,
+    "note": "posizione: FW-INDALCO\nseriale: FGT60FTK20099D36\nregistrazione: 2/14/24"
+  },
+  {
+    "id": "sca_8b67ba1f0469dccb",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "Fortigate",
+    "tipo_licenza": "FortiGate 40F",
+    "data_scadenza": "9/27/26",
+    "rinnovo_mensile": 12,
+    "note": "posizione: TECNOTEL-FW-SCORTA-5\nseriale: FGT40FTK24092119\nregistrazione: 2/13/26"
   }
 ]

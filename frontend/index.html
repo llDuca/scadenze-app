@@ -193,13 +193,19 @@ button:active {
     flex-wrap: wrap;
 }
 
-input, select {
+input, select, textarea {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--border);
     background: var(--card);
     color: var(--text);
     flex: 1;
+}
+
+textarea {
+    min-height: 74px;
+    resize: vertical;
+    font-family: inherit;
 }
 
 .card {
@@ -299,6 +305,11 @@ input, select {
     width: 100%;
     margin-bottom: 0;
     box-sizing: border-box;
+}
+
+.note {
+    margin-top: 6px;
+    white-space: pre-line;
 }
 .dropzones {
     display: flex;
@@ -426,6 +437,7 @@ button:hover::after {
         <input id="tipo_licenza" placeholder="Tipo licenza">
         <input id="data" type="date">
         <input id="rinnovo" type="number" placeholder="Rinnovo (mesi)">
+        <input id="note" placeholder="Note">
         <button class="primary" onclick="aggiungi()">Aggiungi</button>
         <button class="ordina-btn" onclick="ordina()">Ordina</button>
         <select id="tipoOrdine" onchange="ordinaAvanzato()">
@@ -619,7 +631,8 @@ function testoRicercaScadenza(s) {
         s.prodotto,
         s.tipo_licenza,
         s.data_scadenza,
-        s.rinnovo_mensile
+        s.rinnovo_mensile,
+        s.note
     ].join(" "));
 }
 
@@ -721,6 +734,7 @@ async function aggiungi() {
     const tipo_licenza = document.getElementById("tipo_licenza").value;
     const data = document.getElementById("data").value;
     const rinnovo = document.getElementById("rinnovo").value;
+    const note = document.getElementById("note").value;
 
     if (!cliente || !prodotto || !tipo_licenza || !data) {
         return alert("Compila tutti i campi obbligatori");
@@ -734,7 +748,8 @@ async function aggiungi() {
             prodotto,
             tipo_licenza,
             data_scadenza: data,
-            rinnovo_mensile: rinnovo
+            rinnovo_mensile: rinnovo,
+            note
         })
     });
 
@@ -746,6 +761,7 @@ async function aggiungi() {
     document.getElementById("tipo_licenza").value = "";
     document.getElementById("data").value = "";
     document.getElementById("rinnovo").value = "";
+    document.getElementById("note").value = "";
 }
 
 function modifica(id) {
@@ -889,6 +905,7 @@ function render(data) {
                     <input class="edit-input" id="edit-tipo-${safeDomId}" value="${escapeHtml(s.tipo_licenza)}" placeholder="Tipo licenza">
                     <input class="edit-input" id="edit-data-${safeDomId}" type="date" value="${escapeHtml(s.data_scadenza)}">
                     <input class="edit-input" id="edit-rinnovo-${safeDomId}" type="number" value="${escapeHtml(s.rinnovo_mensile || 0)}" placeholder="Rinnovo (mesi)">
+                    <textarea class="edit-input" id="edit-note-${safeDomId}" placeholder="Note">${escapeHtml(s.note || "")}</textarea>
                 </div>
                 <div class="buttons">
                     <button class="success" onclick="salva(${safeJsId})">Salva</button>
@@ -904,6 +921,7 @@ function render(data) {
                     Prodotto: ${escapeHtml(s.prodotto)} - ${escapeHtml(s.tipo_licenza)}<br>
                     Scadenza: ${escapeHtml(s.data_scadenza)} (${diff} giorni)<br>
                     Rinnovo: ${escapeHtml(s.rinnovo_mensile || 0)} mesi
+                    ${s.note ? `<div class="note">Note: ${escapeHtml(s.note)}</div>` : ""}
                 </div>
                 <div class="buttons">
                     <button class="info-btn" onclick="modifica(${safeJsId})">Modifica</button>
@@ -930,6 +948,7 @@ function salva(id){
     const tipo_licenza = document.getElementById("edit-tipo-"+safeDomId).value.trim();
     const data = document.getElementById("edit-data-"+safeDomId).value;
     const rinnovo_mensile = document.getElementById("edit-rinnovo-"+safeDomId).value;
+    const note = document.getElementById("edit-note-"+safeDomId).value.trim();
 
     if (!cliente || !prodotto || !tipo_licenza || !data) {
         return alert("Compila tutti i campi obbligatori");
@@ -938,7 +957,7 @@ function salva(id){
     fetch(apiUrl(id), {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ cliente, prodotto, tipo_licenza, data_scadenza: data, rinnovo_mensile })
+        body: JSON.stringify({ cliente, prodotto, tipo_licenza, data_scadenza: data, rinnovo_mensile, note })
     }).then(() => {
         editingId = null;
         carica();
@@ -977,6 +996,7 @@ function drop(ev, nuovaPriorita) {
             tipo_licenza: scadenza.tipo_licenza,
             data_scadenza: scadenza.data_scadenza,
             rinnovo_mensile: scadenza.rinnovo_mensile,
+            note: scadenza.note,
             priorita: nuovaPriorita
         })
     }).then(() => {
