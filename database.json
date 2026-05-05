@@ -1,26 +1,258 @@
 [
   {
-    "id": 1777966811842,
-    "titolo": "Arpa",
-    "data_scadenza": "2026-05-15",
-    "priorita": "alta"
+    "id": "sca_a878d48f6d191cbc",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "2/18/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115"
   },
   {
-    "id": 1777971812155,
-    "titolo": "ggnv",
-    "data_scadenza": "2026-05-06",
-    "priorita": "media"
+    "id": "sca_7a83bdb0cebfb6ef",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "1/18/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_arpa-molise_0928633eb6"
   },
   {
-    "id": 1777978129353,
-    "titolo": "iral",
-    "data_scadenza": "2026-05-07",
-    "priorita": "bassa"
+    "id": "sca_c3a611af6e6e22ba",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "3/11/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_asec-formazione_4efd4381c7"
   },
   {
-    "id": 1777978309121,
-    "titolo": "gfnhvn",
-    "data_scadenza": "2026-05-22",
-    "priorita": "alta"
+    "id": "sca_7904696145c0b3a4",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "11/10/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_asrem_b988f891c1"
+  },
+  {
+    "id": "sca_42638a20f411db56",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "5/28/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f"
+  },
+  {
+    "id": "sca_017f9c1faca7d4c0",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "2/19/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_camardo-s-p-a_ffb0f7af2a"
+  },
+  {
+    "id": "sca_defe144c9de188d0",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "6/12/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_comune-di-oratino_1abb6a05c4"
+  },
+  {
+    "id": "sca_38148d256d1569c3",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "3/11/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_comune-roccamandolfi_6cc1ef1a97"
+  },
+  {
+    "id": "sca_976e9554662f0f05",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/7/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_consorzio-per-lo-sviluppo-industriale-di_617fb8b080"
+  },
+  {
+    "id": "sca_9a8dd9432bc86bb6",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/13/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_diocesi-di-trivento_ebb7b9cc3a"
+  },
+  {
+    "id": "sca_27a1e72d90d9627c",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "4/13/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_edinext-srl_7e3c846925"
+  },
+  {
+    "id": "sca_552fda21fec4ee27",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "9/6/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_emmepi-srl_f809a6a95c"
+  },
+  {
+    "id": "sca_e48cd314dd828fcf",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "9/5/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_farmacia-marino_01fd6b9547"
+  },
+  {
+    "id": "sca_bc017a00ccfcd06e",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "5/30/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_gruppo-marchetti_d7a2ccc3f6"
+  },
+  {
+    "id": "sca_0607ebe6b494021f",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/19/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_hotel-iris_d585c6a8b9"
+  },
+  {
+    "id": "sca_27199815088e6b81",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "5/30/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_ind-al-co-s-p-a_96fa35cc0a"
+  },
+  {
+    "id": "sca_9bc3b1db7c15e0fb",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/7/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_italimedia-s-r-l_79b558e75f"
+  },
+  {
+    "id": "sca_a388ec02d80a0b8c",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "1/6/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_medical-center-s-r-l_62435967b4"
+  },
+  {
+    "id": "sca_6ba2a5097e449542",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "8/23/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_mediolanum-campobasso_9be45e48a6"
+  },
+  {
+    "id": "sca_759ea8a2a0e45126",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "3/27/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_mm-holding-srl_1bc068dd25"
+  },
+  {
+    "id": "sca_4f6f72b44e1902c4",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "10/18/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_molise-dati_e73b25ebc5"
+  },
+  {
+    "id": "sca_7b532a7cba6c7548",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/7/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_neulift-service-molise_3ed73079f8"
+  },
+  {
+    "id": "sca_8e333f5bd8fdf645",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "6/18/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_planetcall-direct_77907fefc6"
+  },
+  {
+    "id": "sca_3f39be898407c280",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "2/28/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_pro-ma-srl_7cf1ea620e"
+  },
+  {
+    "id": "sca_4e200a62620cd7ce",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/31/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_regione-molise_46f65c598b"
+  },
+  {
+    "id": "sca_113c521aa4922816",
+    "prodotto": "3CX",
+    "tipo_licenza": "BASIC",
+    "data_scadenza": "3/20/27",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_siltes-srl_cc773cb806"
+  },
+  {
+    "id": "sca_291aa8ae92fc3d4e",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "10/13/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_studio-dentistico-barone-giuliano_26fe83d488"
+  },
+  {
+    "id": "sca_6d128dba70f99a4a",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "8/26/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_studio-notarile-colavita_f97db47390"
+  },
+  {
+    "id": "sca_627ebb7292adfaed",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "12/7/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_studio-notarile-pilla_00c1cdd711"
+  },
+  {
+    "id": "sca_1492116d9e61f1a5",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "6/3/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_sviluppo-italia-molise-spa_056bdcdfdf"
+  },
+  {
+    "id": "sca_0be65e994018d273",
+    "prodotto": "3CX",
+    "tipo_licenza": "Enterprise / AI",
+    "data_scadenza": "1/1/35",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_tecnotel-servizi-s-r-l_a42df7848c"
+  },
+  {
+    "id": "sca_971a7bd0d5140d32",
+    "prodotto": "3CX",
+    "tipo_licenza": "PRO",
+    "data_scadenza": "5/21/26",
+    "rinnovo_mensile": 12,
+    "cliente_id": "cli_v-veneto-assicurazioni_3dd50f8438"
   }
 ]

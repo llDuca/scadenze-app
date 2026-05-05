@@ -1,0 +1,162 @@
+[
+  {
+    "id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "nome": "Amministrazione Provinciale di Isernia",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_arpa-molise_0928633eb6",
+    "nome": "Arpa Molise",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_asec-formazione_4efd4381c7",
+    "nome": "ASEC Formazione",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_asrem_b988f891c1",
+    "nome": "ASREM",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "nome": "Biogroup S.p.A.",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_camardo-s-p-a_ffb0f7af2a",
+    "nome": "Camardo S.P.A.",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_comune-di-oratino_1abb6a05c4",
+    "nome": "Comune di Oratino",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_comune-roccamandolfi_6cc1ef1a97",
+    "nome": "Comune Roccamandolfi",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_consorzio-per-lo-sviluppo-industriale-di_617fb8b080",
+    "nome": "Consorzio per lo sviluppo industriale di Campobasso",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_diocesi-di-trivento_ebb7b9cc3a",
+    "nome": "Diocesi di Trivento",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_edinext-srl_7e3c846925",
+    "nome": "Edinext Srl",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_emmepi-srl_f809a6a95c",
+    "nome": "Emmepi SRL",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_farmacia-marino_01fd6b9547",
+    "nome": "Farmacia Marino",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_gruppo-marchetti_d7a2ccc3f6",
+    "nome": "Gruppo Marchetti",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_hotel-iris_d585c6a8b9",
+    "nome": "Hotel Iris",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_ind-al-co-s-p-a_96fa35cc0a",
+    "nome": "Ind.Al.Co. S.p.a.",
+    "created_at": "2026-05-05T14:30:15.957Z"
+  },
+  {
+    "id": "cli_italimedia-s-r-l_79b558e75f",
+    "nome": "Italimedia S.r.l.",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_medical-center-s-r-l_62435967b4",
+    "nome": "Medical Center S.r.l.",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_mediolanum-campobasso_9be45e48a6",
+    "nome": "Mediolanum Campobasso",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_mm-holding-srl_1bc068dd25",
+    "nome": "MM Holding srl",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_molise-dati_e73b25ebc5",
+    "nome": "Molise Dati",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_neulift-service-molise_3ed73079f8",
+    "nome": "Neulift Service Molise",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_planetcall-direct_77907fefc6",
+    "nome": "Planetcall Direct",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_pro-ma-srl_7cf1ea620e",
+    "nome": "Pro.Ma. Srl",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_regione-molise_46f65c598b",
+    "nome": "Regione Molise",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_siltes-srl_cc773cb806",
+    "nome": "Siltes SRL",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_studio-dentistico-barone-giuliano_26fe83d488",
+    "nome": "Studio Dentistico Barone Giuliano",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_studio-notarile-colavita_f97db47390",
+    "nome": "Studio Notarile Colavita",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_studio-notarile-pilla_00c1cdd711",
+    "nome": "Studio Notarile Pilla",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_sviluppo-italia-molise-spa_056bdcdfdf",
+    "nome": "Sviluppo Italia Molise SPA",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_tecnotel-servizi-s-r-l_a42df7848c",
+    "nome": "Tecnotel Servizi s.r.l.",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  },
+  {
+    "id": "cli_v-veneto-assicurazioni_3dd50f8438",
+    "nome": "V.Veneto Assicurazioni",
+    "created_at": "2026-05-05T14:30:15.958Z"
+  }
+]

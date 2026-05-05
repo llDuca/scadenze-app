@@ -4,8 +4,12 @@ const cors = require('cors');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
+const XLSX = require('xlsx');
+const cron = require('node-cron');
+const crypto = require('crypto');
 
 const DB_FILE = path.join(__dirname, 'database.json');
+const CLIENTI_FILE = path.join(__dirname, 'clienti.json');
 const USERS_FILE = path.join(__dirname, 'users.json');
 
 function readJSON(file) {
@@ -39,6 +43,174 @@ function writeJSON(file, data) {
     } catch (err) {
         console.error('ERRORE SCRITTURA:', err);
     }
+}
+
+function normalizzaTesto(value) {
+    return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function creaClienteId(nome) {
+    const pulito = normalizzaTesto(nome);
+    const slug = pulito
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+        .slice(0, 40) || 'cliente';
+    const hash = crypto.createHash('sha1').update(pulito).digest('hex').slice(0, 10);
+
+    return `cli_${slug}_${hash}`;
+}
+
+function creaScadenzaId(scadenze, payload) {
+    const seed = [
+        payload.cliente_id,
+        payload.prodotto,
+        payload.tipo_licenza,
+        payload.data_scadenza,
+        Date.now(),
+        Math.random()
+    ].join('|');
+    const base = `sca_${crypto.createHash('sha1').update(seed).digest('hex').slice(0, 16)}`;
+    let id = base;
+    let contatore = 2;
+
+    while (scadenze.some(s => s.id === id)) {
+        id = `${base}_${contatore}`;
+        contatore++;
+    }
+
+    return id;
+}
+
+function trovaCliente(clienti, nome) {
+    const normalizzato = normalizzaTesto(nome);
+    return clienti.find(c => normalizzaTesto(c.nome) === normalizzato);
+}
+
+function trovaClientePerId(clienti, id) {
+    return clienti.find(c => c.id === id);
+}
+
+function ensureCliente(clienti, nome) {
+    const nomePulito = String(nome || '').trim().replace(/\s+/g, ' ');
+    let cliente = trovaCliente(clienti, nomePulito);
+
+    if (cliente) return cliente;
+
+    let id = creaClienteId(nomePulito);
+    let contatore = 2;
+    while (clienti.some(c => c.id === id)) {
+        id = `${creaClienteId(nomePulito)}_${contatore}`;
+        contatore++;
+    }
+
+    cliente = {
+        id,
+        nome: nomePulito,
+        created_at: new Date().toISOString()
+    };
+
+    clienti.push(cliente);
+    return cliente;
+}
+
+function arricchisciScadenze(scadenze, clienti) {
+    return scadenze.map(s => {
+        const cliente = trovaClientePerId(clienti, s.cliente_id);
+        return {
+            ...s,
+            cliente: cliente ? cliente.nome : (s.cliente || '')
+        };
+    });
+}
+
+function mappaRigaExcel(r) {
+    const cliente = r.Cliente || r.cliente || r["Nome Cliente"];
+    const prodotto = r.Prodotto || r.prodotto || r["Software"];
+    const tipo_licenza = r["Tipo Licenza"] || r.Tipo || r.tipo_licenza || r.Licenza;
+    let data_scadenza = r.Scadenza || r.data_scadenza || r["Data Scadenza"];
+
+    if (typeof data_scadenza === 'number') {
+        const date = XLSX.SSF.parse_date_code(data_scadenza);
+        data_scadenza = `${date.y}-${String(date.m).padStart(2,'0')}-${String(date.d).padStart(2,'0')}`;
+    }
+
+    return {
+        cliente,
+        prodotto,
+        tipo_licenza,
+        data_scadenza,
+        rinnovo_mensile: Number(r.Rinnovo || r.rinnovo_mensile || r.mensilita || 0)
+    };
+}
+
+function salvaScadenza(scadenze, clienti, payload, options = {}) {
+    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile } = payload;
+
+    if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
+        return null;
+    }
+
+    const clienteRecord = ensureCliente(clienti, cliente);
+    const esiste = scadenze.find(s =>
+        s.cliente_id === clienteRecord.id &&
+        s.prodotto === prodotto &&
+        s.tipo_licenza === tipo_licenza
+    );
+
+    if (esiste) {
+        if (!options.aggiornaEsistente) {
+            return { scadenza: esiste, creata: false, duplicata: true };
+        }
+
+        esiste.data_scadenza = data_scadenza;
+        esiste.rinnovo_mensile = Number(rinnovo_mensile) || 0;
+        return { scadenza: esiste, creata: false, duplicata: false };
+    }
+
+    const nuova = {
+        id: creaScadenzaId(scadenze, {
+            cliente_id: clienteRecord.id,
+            prodotto,
+            tipo_licenza,
+            data_scadenza
+        }),
+        cliente_id: clienteRecord.id,
+        prodotto,
+        tipo_licenza,
+        data_scadenza,
+        rinnovo_mensile: Number(rinnovo_mensile) || 0
+    };
+
+    scadenze.push(nuova);
+    return { scadenza: nuova, creata: true, duplicata: false };
+}
+
+function importaDaFileExcel(filePath) {
+    if (!fs.existsSync(filePath)) {
+        return { imported: false, message: 'File Excel non trovato', totale: 0, aggiunte: 0 };
+    }
+
+    const workbook = XLSX.readFile(filePath);
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(sheet, { raw: false });
+
+    const clienti = readJSON(CLIENTI_FILE);
+    const scadenze = readJSON(DB_FILE);
+    let aggiunte = 0;
+    let aggiornate = 0;
+
+    rows.forEach(r => {
+        const result = salvaScadenza(scadenze, clienti, mappaRigaExcel(r), { aggiornaEsistente: true });
+        if (result?.creata) aggiunte++;
+        else if (result && !result.duplicata) aggiornate++;
+    });
+
+    writeJSON(CLIENTI_FILE, clienti);
+    writeJSON(DB_FILE, scadenze);
+
+    return { imported: true, totale: scadenze.length, aggiunte, aggiornate };
 }
 
 const app = express();
@@ -158,52 +330,81 @@ app.get('/login', (req, res) => {
 app.get('/scadenze', (req, res) => {
     if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
 
-    const dati = readJSON(DB_FILE);
+    const scadenze = readJSON(DB_FILE);
+    const clienti = readJSON(CLIENTI_FILE);
+    const dati = arricchisciScadenze(scadenze, clienti);
+    console.log('LETTURA DB:', dati);
     res.json(dati);
+});
+
+app.get('/clienti', (req, res) => {
+    if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
+
+    res.json(readJSON(CLIENTI_FILE));
 });
 
 app.post('/scadenze', (req, res) => {
     console.log('BODY RICEVUTO:', req.body);
-    const { titolo, descrizione, data_scadenza, priorita } = req.body;
-    const prio = priorita || 'bassa';
-    if (!titolo || !data_scadenza) {
-        return res.status(400).json({ error: "titolo e data_scadenza obbligatori" });
+
+    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile } = req.body;
+
+    if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
+        return res.status(400).json({ error: "campi obbligatori mancanti" });
     }
 
-    const dati = readJSON(DB_FILE);
-
-    const nuova = {
-        id: Date.now(),
-        titolo,
-        descrizione,
+    const clienti = readJSON(CLIENTI_FILE);
+    const scadenze = readJSON(DB_FILE);
+    const result = salvaScadenza(scadenze, clienti, {
+        cliente,
+        prodotto,
+        tipo_licenza,
         data_scadenza,
-        priorita: prio
-    };
+        rinnovo_mensile
+    });
 
-    dati.push(nuova);
-    writeJSON(DB_FILE, dati);
-    console.log('DATI SALVATI:', dati);
+    if (!result || result.duplicata) {
+        return res.status(400).json({ error: "Licenza già esistente per questo cliente" });
+    }
 
-    res.json(nuova);
+    writeJSON(CLIENTI_FILE, clienti);
+    writeJSON(DB_FILE, scadenze);
+    console.log('FILE DB:', DB_FILE);
+    const verifica = readJSON(DB_FILE);
+    console.log('VERIFICA FILE:', verifica);
+
+    console.log('DATI SALVATI:', result.scadenza);
+
+    const clienteRecord = trovaClientePerId(clienti, result.scadenza.cliente_id);
+    res.json({ ...result.scadenza, cliente: clienteRecord ? clienteRecord.nome : cliente });
 });
 
 app.put('/scadenze/:id', (req, res) => {
-    const { titolo, data_scadenza, priorita } = req.body;
-    const prio = priorita || 'bassa';
-    if (!titolo || !data_scadenza) {
-        return res.status(400).json({ error: "titolo e data_scadenza obbligatori" });
+    const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile } = req.body;
+
+    if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
+        return res.status(400).json({ error: "campi obbligatori mancanti" });
     }
 
-    let dati = readJSON(DB_FILE);
+    const clienti = readJSON(CLIENTI_FILE);
+    let scadenze = readJSON(DB_FILE);
+    const clienteRecord = ensureCliente(clienti, cliente);
 
-    dati = dati.map(s => {
+    scadenze = scadenze.map(s => {
         if (s.id == req.params.id) {
-            return { ...s, titolo, data_scadenza, priorita: prio };
+            return {
+                ...s,
+                cliente_id: clienteRecord.id,
+                prodotto,
+                tipo_licenza,
+                data_scadenza,
+                rinnovo_mensile: Number(rinnovo_mensile) || 0
+            };
         }
         return s;
     });
 
-    writeJSON(DB_FILE, dati);
+    writeJSON(CLIENTI_FILE, clienti);
+    writeJSON(DB_FILE, scadenze);
 
     res.json({ updated: true });
 });
@@ -220,6 +421,60 @@ app.delete('/scadenze/:id', (req, res) => {
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+});
+
+function importaExcelAutomatico() {
+    try {
+        const filePath = path.join(__dirname, 'Licenze3CX.xlsx');
+
+        const result = importaDaFileExcel(filePath);
+        if (!result.imported) return console.log(result.message);
+
+        console.log("IMPORT AUTOMATICO OK:", result);
+
+    } catch (err) {
+        console.error("ERRORE IMPORT AUTO:", err);
+    }
+}
+
+// Import Excel endpoint
+app.post('/import-excel', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'Licenze3CX.xlsx');
+        const result = importaDaFileExcel(filePath);
+
+        if (!result.imported) {
+            return res.status(400).json({ error: result.message });
+        }
+
+        res.json(result);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Errore import Excel' });
+    }
+});
+
+app.get('/import-excel', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'Licenze3CX.xlsx');
+        const result = importaDaFileExcel(filePath);
+
+        if (!result.imported) {
+            return res.status(400).send(result.message);
+        }
+
+        res.send(`Import completato. Aggiunte: ${result.aggiunte}. Aggiornate: ${result.aggiornate}. Totale scadenze: ${result.totale}`);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Errore import');
+    }
+});
+
+cron.schedule('0 * * * *', () => {
+    console.log('ESEGUO IMPORT AUTOMATICO...');
+    importaExcelAutomatico();
 });
 
 app.listen(3000, '0.0.0.0', () => console.log("Server avviato su rete locale porta 3000"));

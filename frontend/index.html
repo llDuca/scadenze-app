@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' http://localhost:3000; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
 <title>Dashboard</title>
 
 <style>
@@ -216,13 +217,34 @@ input, select {
     z-index: 1;
 }
 
+.card.editing {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.card.editing .info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: 100%;
+}
+
+.card.editing .buttons {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .info {
     flex: 1;
+    min-width: 0;
 }
 
 .buttons {
     display: flex;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .scaduta { border-left: 5px solid var(--danger); }
@@ -275,7 +297,8 @@ input, select {
 .toast.show { opacity: 1; }
 .edit-input {
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 0;
+    box-sizing: border-box;
 }
 .dropzones {
     display: flex;
@@ -398,22 +421,20 @@ button:hover::after {
     </div>
 
     <div class="toolbar">
-        <input id="titolo" placeholder="Titolo">
+        <input id="cliente" placeholder="Cliente">
+        <input id="prodotto" placeholder="Prodotto">
+        <input id="tipo_licenza" placeholder="Tipo licenza">
         <input id="data" type="date">
-        <select id="priorita">
-            <option value="bassa">Bassa</option>
-            <option value="media">Media</option>
-            <option value="alta">Alta</option>
-        </select>
+        <input id="rinnovo" type="number" placeholder="Rinnovo (mesi)">
         <button class="primary" onclick="aggiungi()">Aggiungi</button>
         <button class="ordina-btn" onclick="ordina()">Ordina</button>
         <select id="tipoOrdine" onchange="ordinaAvanzato()">
             <option value="data">Data</option>
             <option value="priorita">Priorità</option>
-            <option value="titolo">Titolo</option>
+            <option value="titolo">Cliente</option>
         </select>
         <button class="secondary" onclick="resetFiltri()">Reset</button>
-        <input placeholder="Cerca..." oninput="cerca(this.value)">
+        <input placeholder="Cerca cliente, prodotto, licenza o scadenza..." oninput="cerca(this.value)">
     </div>
 
     <div class="kanban">
@@ -444,7 +465,7 @@ button:hover::after {
     <select id="defaultOrder" onchange="salvaImpostazioni()">
         <option value="data">Data</option>
         <option value="priorita">Priorità</option>
-        <option value="titolo">Titolo</option>
+        <option value="titolo">Cliente</option>
     </select>
 
     <label>Tema</label>
@@ -460,6 +481,7 @@ button:hover::after {
 
 <script>
 const API = "/scadenze";
+const CLIENTI_API = "/clienti";
 
 function logout() {
     fetch('/logout')
@@ -540,6 +562,7 @@ let datiGlobali = [];
 let query = "";
 let editingId = null;
 let dragId = null;
+let clientiById = {};
 let ordineAsc = true;
 let tipoOrdineSalvato = localStorage.getItem("tipoOrdine") || "data";
 let notificheAttive = localStorage.getItem("notifiche") === "true";
@@ -547,6 +570,75 @@ let listaNotifiche = [];
 syncNotificheUI();
 aggiornaBadge();
 document.getElementById("tipoOrdine").value = tipoOrdineSalvato;
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function jsArg(value) {
+    return escapeHtml(JSON.stringify(String(value)));
+}
+
+function domId(value) {
+    return encodeURIComponent(String(value));
+}
+
+function apiUrl(id) {
+    return API + "/" + encodeURIComponent(String(id));
+}
+
+function nomeCliente(scadenza) {
+    return scadenza.cliente || clientiById[scadenza.cliente_id] || "";
+}
+
+function normalizzaScadenza(scadenza) {
+    return {
+        ...scadenza,
+        cliente: nomeCliente(scadenza)
+    };
+}
+
+function normalizzaRicerca(value) {
+    return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function testoRicercaScadenza(s) {
+    return normalizzaRicerca([
+        nomeCliente(s),
+        s.cliente_id,
+        s.prodotto,
+        s.tipo_licenza,
+        s.data_scadenza,
+        s.rinnovo_mensile
+    ].join(" "));
+}
+
+function matchRicerca(s) {
+    if (!query) return true;
+
+    const parole = query.split(" ").filter(Boolean);
+    const testo = testoRicercaScadenza(s);
+
+    return parole.every(parola => testo.includes(parola));
+}
+
+function prioritaCalcolata(scadenza) {
+    const diff = giorniDiff(scadenza.data_scadenza);
+    if (diff <= 10 && diff >= 0) return "alta";
+    if (diff > 10 && diff <= 30) return "media";
+    if (diff > 30) return "bassa";
+    return "alta";
+}
 
 function giorniDiff(data) {
     const oggi = new Date();
@@ -562,7 +654,7 @@ function controllaScadenze() {
 
         // Notifica a 5 giorni o meno (non scadute)
         if (diff <= 5 && diff >= 0) {
-            const msg = s.titolo + " - " + s.data_scadenza;
+            const msg = s.cliente + " - " + s.prodotto + " - " + s.data_scadenza;
 
             // evita duplicati
             if (!listaNotifiche.includes(msg)) {
@@ -573,7 +665,7 @@ function controllaScadenze() {
             // notifica browser solo a 5 giorni esatti
             if (diff === 5) {
                 new Notification("Scadenza tra 5 giorni", {
-                    body: s.titolo
+                    body: s.cliente + " - " + s.prodotto
                 });
             }
         }
@@ -581,14 +673,14 @@ function controllaScadenze() {
         // oggi
         if (diff === 0) {
             new Notification("Scadenza oggi", {
-                body: s.titolo
+                body: s.cliente + " - " + s.prodotto
             });
         }
 
         // domani
         if (diff === 1) {
             new Notification("Scadenza domani", {
-                body: s.titolo
+                body: s.cliente + " - " + s.prodotto
             });
         }
     });
@@ -600,44 +692,69 @@ function filtra(tipo) {
 }
 
 function cerca(val) {
-    query = val.toLowerCase();
+    query = normalizzaRicerca(val);
     render(datiGlobali);
 }
 
 async function carica() {
-    const res = await fetch(API);
-    const data = await res.json();
-    datiGlobali = data;
-    render(data);
+    const resScadenze = await fetch(API);
+    let clienti = [];
+
+    try {
+        let resClienti = await fetch(CLIENTI_API);
+        if (!resClienti.ok) {
+            resClienti = await fetch('/clienti.json');
+        }
+        clienti = resClienti.ok ? await resClienti.json() : [];
+    } catch {}
+
+    clientiById = Object.fromEntries(clienti.map(c => [c.id, c.nome]));
+
+    const data = await resScadenze.json();
+    datiGlobali = Array.isArray(data) ? data.map(normalizzaScadenza) : [];
+    render(datiGlobali);
 }
 
 async function aggiungi() {
-    const titolo = document.getElementById("titolo").value;
+    const cliente = document.getElementById("cliente").value;
+    const prodotto = document.getElementById("prodotto").value;
+    const tipo_licenza = document.getElementById("tipo_licenza").value;
     const data = document.getElementById("data").value;
-    const priorita = document.getElementById("priorita").value;
+    const rinnovo = document.getElementById("rinnovo").value;
 
-    if (!titolo || !data) return alert("Compila tutto");
+    if (!cliente || !prodotto || !tipo_licenza || !data) {
+        return alert("Compila tutti i campi obbligatori");
+    }
 
     await fetch(API, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ titolo, data_scadenza: data, priorita })
+        body: JSON.stringify({
+            cliente,
+            prodotto,
+            tipo_licenza,
+            data_scadenza: data,
+            rinnovo_mensile: rinnovo
+        })
     });
 
     carica();
     showToast("Aggiunto");
-    document.getElementById("titolo").value = "";
+
+    document.getElementById("cliente").value = "";
+    document.getElementById("prodotto").value = "";
+    document.getElementById("tipo_licenza").value = "";
     document.getElementById("data").value = "";
-    document.getElementById("priorita").value = "bassa";
+    document.getElementById("rinnovo").value = "";
 }
 
 function modifica(id) {
-    editingId = id;
+    editingId = String(id);
     render(datiGlobali);
 }
 
 async function elimina(id) {
-    await fetch(API + "/" + id, { method: "DELETE" });
+    await fetch(apiUrl(id), { method: "DELETE" });
     carica();
     showToast("Eliminato");
 }
@@ -699,15 +816,15 @@ function ordinaAvanzato() {
 
         if (tipo === "titolo") {
             return ordineAsc
-                ? a.titolo.localeCompare(b.titolo)
-                : b.titolo.localeCompare(a.titolo);
+                ? a.cliente.localeCompare(b.cliente)
+                : b.cliente.localeCompare(a.cliente);
         }
 
         if (tipo === "priorita") {
             const map = { alta: 3, media: 2, bassa: 1 };
             return ordineAsc
-                ? map[b.priorita] - map[a.priorita]
-                : map[a.priorita] - map[b.priorita];
+                ? map[prioritaCalcolata(b)] - map[prioritaCalcolata(a)]
+                : map[prioritaCalcolata(a)] - map[prioritaCalcolata(b)];
         }
 
         return 0;
@@ -729,7 +846,8 @@ function render(data) {
     let sca = 0;
 
     const filtrati = data.filter(s => {
-        if(query && !s.titolo.toLowerCase().includes(query)) return false;
+        if(!matchRicerca(s)) return false;
+
         const diff = giorniDiff(s.data_scadenza);
         if (diff < 0) sca++;
         else if (diff <= 3) urg++;
@@ -749,6 +867,12 @@ function render(data) {
 
     filtrati.forEach(s => {
         const diff = giorniDiff(s.data_scadenza);
+        const id = String(s.id);
+        const safeDomId = domId(id);
+        const safeJsId = jsArg(id);
+        const clienteNome = nomeCliente(s);
+
+        const prioritaAuto = prioritaCalcolata(s);
 
         let classe = "";
         if (diff < 0) classe = "scaduta";
@@ -756,42 +880,41 @@ function render(data) {
 
         let card = "";
 
-        if(editingId === s.id){
+        if(editingId === id){
             card = `
-            <div class="card ${classe}">
+            <div class="card editing ${classe}">
                 <div class="info">
-                    <input class="edit-input" id="edit-titolo-${s.id}" value="${s.titolo}">
-                    <input class="edit-input" id="edit-data-${s.id}" type="date" value="${s.data_scadenza}">
-                    <select id="edit-priorita-${s.id}">
-                        <option value="bassa" ${s.priorita==="bassa"?"selected":""}>Bassa</option>
-                        <option value="media" ${s.priorita==="media"?"selected":""}>Media</option>
-                        <option value="alta" ${s.priorita==="alta"?"selected":""}>Alta</option>
-                    </select>
+                    <input class="edit-input" id="edit-cliente-${safeDomId}" value="${escapeHtml(s.cliente)}" placeholder="Cliente">
+                    <input class="edit-input" id="edit-prodotto-${safeDomId}" value="${escapeHtml(s.prodotto)}" placeholder="Prodotto">
+                    <input class="edit-input" id="edit-tipo-${safeDomId}" value="${escapeHtml(s.tipo_licenza)}" placeholder="Tipo licenza">
+                    <input class="edit-input" id="edit-data-${safeDomId}" type="date" value="${escapeHtml(s.data_scadenza)}">
+                    <input class="edit-input" id="edit-rinnovo-${safeDomId}" type="number" value="${escapeHtml(s.rinnovo_mensile || 0)}" placeholder="Rinnovo (mesi)">
                 </div>
                 <div class="buttons">
-                    <button class="success" onclick="salva(${s.id})">Salva</button>
+                    <button class="success" onclick="salva(${safeJsId})">Salva</button>
                     <button class="warning" onclick="annulla()">Annulla</button>
                 </div>
             </div>
             `;
         } else {
             card = `
-            <div class="card ${classe}" draggable="true" ondragstart="drag(event, ${s.id})">
+            <div class="card ${classe}" draggable="true" ondragstart="drag(event, ${safeJsId})">
                 <div class="info">
-                    <b>${s.titolo}</b><br>
-                    ${s.data_scadenza} (${diff} giorni)<br>
-                    Priorità: <span class="badge ${s.priorita || 'bassa'}">${s.priorita || 'n/d'}</span>
+                    <b>Cliente: ${escapeHtml(clienteNome || "Cliente non trovato")}</b><br>
+                    Prodotto: ${escapeHtml(s.prodotto)} - ${escapeHtml(s.tipo_licenza)}<br>
+                    Scadenza: ${escapeHtml(s.data_scadenza)} (${diff} giorni)<br>
+                    Rinnovo: ${escapeHtml(s.rinnovo_mensile || 0)} mesi
                 </div>
                 <div class="buttons">
-                    <button class="info-btn" onclick="modifica(${s.id})">Modifica</button>
-                    <button class="delete" onclick="elimina(${s.id})">Elimina</button>
+                    <button class="info-btn" onclick="modifica(${safeJsId})">Modifica</button>
+                    <button class="delete" onclick="elimina(${safeJsId})">Elimina</button>
                 </div>
             </div>
             `;
         }
 
-        if(s.priorita === "alta") htmlAlta += card;
-        else if(s.priorita === "media") htmlMedia += card;
+        if (prioritaAuto === "alta") htmlAlta += card;
+        else if (prioritaAuto === "media") htmlMedia += card;
         else htmlBassa += card;
     });
 
@@ -801,14 +924,21 @@ function render(data) {
 }
 
 function salva(id){
-    const titolo = document.getElementById("edit-titolo-"+id).value;
-    const data = document.getElementById("edit-data-"+id).value;
-    const priorita = document.getElementById("edit-priorita-"+id).value;
+    const safeDomId = domId(id);
+    const cliente = document.getElementById("edit-cliente-"+safeDomId).value.trim();
+    const prodotto = document.getElementById("edit-prodotto-"+safeDomId).value.trim();
+    const tipo_licenza = document.getElementById("edit-tipo-"+safeDomId).value.trim();
+    const data = document.getElementById("edit-data-"+safeDomId).value;
+    const rinnovo_mensile = document.getElementById("edit-rinnovo-"+safeDomId).value;
 
-    fetch(API + "/" + id, {
+    if (!cliente || !prodotto || !tipo_licenza || !data) {
+        return alert("Compila tutti i campi obbligatori");
+    }
+
+    fetch(apiUrl(id), {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ titolo, data_scadenza: data, priorita })
+        body: JSON.stringify({ cliente, prodotto, tipo_licenza, data_scadenza: data, rinnovo_mensile })
     }).then(() => {
         editingId = null;
         carica();
@@ -835,12 +965,18 @@ function drop(ev, nuovaPriorita) {
     ev.preventDefault();
     if (!dragId) return;
 
-    fetch(API + "/" + dragId, {
+    const scadenza = datiGlobali.find(x => String(x.id) === String(dragId));
+    if (!scadenza) return;
+
+    fetch(apiUrl(dragId), {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-            titolo: datiGlobali.find(x => x.id === dragId).titolo,
-            data_scadenza: datiGlobali.find(x => x.id === dragId).data_scadenza,
+            cliente: scadenza.cliente,
+            prodotto: scadenza.prodotto,
+            tipo_licenza: scadenza.tipo_licenza,
+            data_scadenza: scadenza.data_scadenza,
+            rinnovo_mensile: scadenza.rinnovo_mensile,
             priorita: nuovaPriorita
         })
     }).then(() => {
