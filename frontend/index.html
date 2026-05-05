@@ -324,6 +324,24 @@ button:hover::after {
     transform: translateX(80%);
 }
 </style>
+<style>
+#notifBadge {
+    transform-origin: center;
+}
+
+#notifBadge.active {
+    animation: badgeBounce 1s ease-in-out infinite;
+}
+
+@keyframes badgeBounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-3px) scale(1.12);
+    }
+}
+</style>
 </head>
 
 <body style="overflow-x:hidden;">
@@ -849,8 +867,10 @@ function aggiornaBadge() {
     if (listaNotifiche.length > 0) {
         badge.style.display = "block";
         badge.innerText = listaNotifiche.length;
+        badge.classList.add("active");
     } else {
         badge.style.display = "none";
+        badge.classList.remove("active");
     }
 }
 

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background: url('image13.png') no-repeat center center;
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 20px;
+    position:relative;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.02);
+}
+
+.login-box{
+    position:relative;
+    width:90%;
+    max-width:420px;
+    padding:clamp(20px, 3vw, 32px);
+    border-radius:20px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    z-index:1;
+    margin-top: 9vh;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:clamp(20px, 3vw, 30px);
+    font-size:clamp(22px, 4vw, 28px);
+    font-weight:600;
+    color:#2d2d2d;
+}
+
+h2::after{
+    content:"";
+    display:block;
+    width:80px;
+    height:3px;
+    background:#f97316;
+    margin:10px auto 0;
+    border-radius:2px;
+}
+
+.title-main{
+    text-align:center;
+    font-size:clamp(20px, 3.5vw, 24px);
+    font-weight:600;
+    color:#2d2d2d;
+    margin-bottom:6px;
+    letter-spacing:0.5px;
+}
+
+.title-main::after{
+    content:"";
+    display:block;
+    width:60px;
+    height:3px;
+    background:#f97316;
+    margin:8px auto 0;
+    border-radius:2px;
+}
+
+
+/* input moderni */
+input{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    outline:none;
+    transition: all 0.2s ease;
+}
+
+input:focus{
+    border-color:#f97316;
+    box-shadow:0 0 0 2px rgba(249,115,22,0.2);
+}
+
+/* input wrapper con icone */
+.input-group{
+    position:relative;
+    margin-bottom:14px;
+}
+
+.input-group input{
+    width:100%;
+    padding:clamp(12px, 2.5vw, 16px) clamp(12px, 2.5vw, 16px) clamp(12px, 2.5vw, 16px) 44px;
+    border-radius:12px;
+    border:1px solid #e5e5e5;
+    background:#f9f9f9;
+    font-size:clamp(13px, 2vw, 14px);
+}
+
+.input-group input:focus{
+    border-color:#f97316;
+    background:white;
+    box-shadow:0 0 0 2px rgba(249,115,22,0.15);
+}
+
+.input-group::before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    width:20px;
+    height:20px;
+    background: rgba(0,0,0,0.2);
+    border-radius:50%;
+}
+/* login extra row */
+/* .login-extra removed */
+
+/* bottone premium */
+button{
+    width:100%;
+    padding:clamp(12px, 2.5vw, 16px);
+    border:none;
+    border-radius:12px;
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+    color:white;
+    font-size:clamp(14px, 2.5vw, 16px);
+    font-weight:600;
+    cursor:pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(249,115,22,0.3);
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: center top;
+    }
+
+    .login-box {
+        margin: 20px;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        width:95%;
+        padding:20px;
+    }
+
+    .input-group{
+        margin-bottom:12px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="login-box">
+    <div class="title-main">Scadenziario</div>
+    <h2>Accedi al portale</h2>
+
+    <label style="font-weight:500; margin-bottom:6px; display:block;">Nome utente</label>
+    <div class="input-group">
+        <input id="username" placeholder="Username">
+    </div>
+
+    <label style="font-weight:500; margin-bottom:6px; display:block;">Password</label>
+    <div class="input-group">
+        <input id="password" type="password" placeholder="Password">
+    </div>
+
+    <button onclick="login()">Accedi al sistema</button>
+    <div style="text-align:center; margin-top:18px;">
+        <a href="#" onclick="forgotPassword(event)" style="color:#555; text-decoration:underline; font-size:14px;">Password dimenticata?</a>
+    </div>
+</div>
+
+<script>
+async function login(){
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+
+    if(res.ok){
+        window.location.href = '/';
+    } else {
+        alert("Credenziali errate");
+    }
+}
+
+function forgotPassword(e){
+    e.preventDefault();
+    alert("Funzione recupero password non ancora implementata");
+}
+</script>
+
+</body>
+</html>

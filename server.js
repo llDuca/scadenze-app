@@ -152,18 +152,7 @@ app.get('/logout', (req, res) => {
 
 // PAGINA LOGIN (browser)
 app.get('/login', (req, res) => {
-    res.send(`
-        <html>
-        <body style="font-family:sans-serif;padding:20px;">
-            <h2>Login Tecnotel</h2>
-            <form method="POST" action="/login">
-                <input name="username" placeholder="username" required/><br><br>
-                <input name="password" type="password" placeholder="password" required/><br><br>
-                <button type="submit">Accedi</button>
-            </form>
-        </body>
-        </html>
-    `);
+    res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
 });
 
 app.get('/scadenze', (req, res) => {
