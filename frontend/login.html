@@ -8,27 +8,38 @@
 body {
     margin:0;
     font-family: Arial;
-    background: url('image13.png') no-repeat center center;
-    background-size: cover;
-    background-position: center 30%;
-    background-attachment: fixed;
+    background: #eef2f7;
     min-height: 100vh;
     display:flex;
     align-items:center;
     justify-content:center;
     padding: 20px;
     position:relative;
+    overflow:hidden;
+    isolation:isolate;
 }
 
 * {
     box-sizing: border-box;
 }
 
-body::before{
-    content:"";
-    position:absolute;
+.bg-image{
+    position:fixed;
     inset:0;
-    background: rgba(255,255,255,0.02);
+    width:100vw;
+    height:100vh;
+    object-fit:fill;
+    object-position:center center;
+    z-index:-2;
+    pointer-events:none;
+}
+
+.bg-overlay{
+    position:fixed;
+    inset:0;
+    background: rgba(255,255,255,0.14);
+    z-index:-1;
+    pointer-events:none;
 }
 
 .login-box{
@@ -152,8 +163,7 @@ button:hover{
 
 @media (max-width: 768px) {
     body {
-        background-size: cover;
-        background-position: center top;
+        padding: 16px;
     }
 
     .login-box {
@@ -176,6 +186,9 @@ button:hover{
 
 </head>
 <body>
+
+<img class="bg-image" src="image13.png" alt="" aria-hidden="true">
+<div class="bg-overlay" aria-hidden="true"></div>
 
 <div class="login-box">
     <div class="title-main">Scadenziario</div>
