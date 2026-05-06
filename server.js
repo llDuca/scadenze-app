@@ -259,6 +259,30 @@ function mappaRigaExcel(r, options = {}) {
     };
 }
 
+function mappaRigaO365(r, options = {}) {
+    const cliente = r.cliente || r.Cliente;
+    const prodotto = options.prodottoDefault || 'O365';
+    const tipo_licenza = r.tipo_licenza || r["Tipo Licenza"];
+    const data_scadenza = formattaData(r.data_scadenza || r.Scadenza);
+    const rinnovoRaw = String(r.rinnovo_mensile || '').trim();
+    const rinnovo_mensile = Number.parseInt(rinnovoRaw, 10) || Number(r.rinnovo_mensile) || 0;
+    const noteParts = [];
+
+    if (r.id_dettagli != null && String(r.id_dettagli).trim() !== '') noteParts.push(`id_dettagli: ${String(r.id_dettagli).trim()}`);
+    if (r.IdCliente_dettagli != null && String(r.IdCliente_dettagli).trim() !== '') noteParts.push(`IdCliente_dettagli: ${String(r.IdCliente_dettagli).trim()}`);
+    if (r.NrLicenza_dettagli != null && String(r.NrLicenza_dettagli).trim() !== '') noteParts.push(`NrLicenza_dettagli: ${String(r.NrLicenza_dettagli).trim()}`);
+    if (r.data_rinnovo != null && String(r.data_rinnovo).trim() !== '') noteParts.push(`data_rinnovo: ${formattaData(r.data_rinnovo)}`);
+
+    return {
+        cliente,
+        prodotto,
+        tipo_licenza,
+        data_scadenza,
+        rinnovo_mensile,
+        note: noteParts.join('\n')
+    };
+}
+
 function salvaScadenza(scadenze, clienti, payload, options = {}) {
     const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile, note } = payload;
 
@@ -319,9 +343,12 @@ function importaDaFileExcel(filePath, options = {}) {
     const scadenze = readJSON(DB_FILE);
     let aggiunte = 0;
     let aggiornate = 0;
+    const mapper = typeof options.mapper === 'function'
+        ? options.mapper
+        : (row, cfg) => mappaRigaExcel(row, cfg);
 
     rows.forEach(r => {
-        const result = salvaScadenza(scadenze, clienti, mappaRigaExcel(r, options), { aggiornaEsistente: true });
+        const result = salvaScadenza(scadenze, clienti, mapper(r, options), { aggiornaEsistente: true });
         if (result?.creata) aggiunte++;
         else if (result && !result.duplicata) aggiornate++;
     });
@@ -506,8 +533,13 @@ app.delete('/admin/users/:id', requireAdmin, (req, res) => {
     }
 
     const users = readJSON(USERS_FILE);
+    const target = users.find(u => String(u.id) === userId);
+    if (!target) return res.status(404).json({ error: "utente non trovato" });
+    if (target.ruolo === 'admin') {
+        return res.status(400).json({ error: "gli account admin non possono essere eliminati" });
+    }
+
     const nextUsers = users.filter(u => String(u.id) !== userId);
-    if (nextUsers.length === users.length) return res.status(404).json({ error: "utente non trovato" });
 
     writeJSON(USERS_FILE, nextUsers);
     res.json({ deleted: true });
@@ -622,7 +654,8 @@ function importaExcelAutomatico() {
     try {
         const imports = [
             { filePath: path.join(__dirname, 'Licenze3CX.xlsx') },
-            { filePath: path.join(__dirname, 'LicenzeFortigate.xlsx'), prodottoDefault: 'Fortigate' }
+            { filePath: path.join(__dirname, 'LicenzeFortigate.xlsx'), prodottoDefault: 'Fortigate' },
+            { filePath: path.join(__dirname, 'LicenzeEset.xlsx'), prodottoDefault: 'ESET' }
         ];
 
         imports.forEach(importConfig => {
@@ -672,6 +705,39 @@ app.post('/import-fortigate', (req, res) => {
     }
 });
 
+app.post('/import-eset', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'LicenzeEset.xlsx');
+        const result = importaDaFileExcel(filePath, { prodottoDefault: 'ESET' });
+
+        if (!result.imported) {
+            return res.status(400).json({ error: result.message });
+        }
+
+        res.json(result);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Errore import ESET' });
+    }
+});
+
+app.post('/import-o365', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'LicenzeO365.xlsx');
+        const result = importaDaFileExcel(filePath, { prodottoDefault: 'O365', mapper: mappaRigaO365 });
+
+        if (!result.imported) {
+            return res.status(400).json({ error: result.message });
+        }
+
+        res.json(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Errore import O365' });
+    }
+});
+
 app.get('/import-excel', (req, res) => {
     try {
         const filePath = path.join(__dirname, 'Licenze3CX.xlsx');
@@ -703,6 +769,39 @@ app.get('/import-fortigate', (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Errore import Fortigate');
+    }
+});
+
+app.get('/import-eset', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'LicenzeEset.xlsx');
+        const result = importaDaFileExcel(filePath, { prodottoDefault: 'ESET' });
+
+        if (!result.imported) {
+            return res.status(400).send(result.message);
+        }
+
+        res.send(`Import ESET completato. Aggiunte: ${result.aggiunte}. Aggiornate: ${result.aggiornate}. Totale scadenze: ${result.totale}`);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Errore import ESET');
+    }
+});
+
+app.get('/import-o365', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'LicenzeO365.xlsx');
+        const result = importaDaFileExcel(filePath, { prodottoDefault: 'O365', mapper: mappaRigaO365 });
+
+        if (!result.imported) {
+            return res.status(400).send(result.message);
+        }
+
+        res.send(`Import O365 completato. Aggiunte: ${result.aggiunte}. Aggiornate: ${result.aggiornate}. Totale scadenze: ${result.totale}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Errore import O365');
     }
 });
 

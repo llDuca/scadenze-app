@@ -979,5 +979,734 @@
     "data_scadenza": "27/09/2026",
     "rinnovo_mensile": 12,
     "note": "posizione: TECNOTEL-FW-SCORTA-5\nseriale: FGT40FTK24092119\nregistrazione: 2/13/26"
+  },
+  {
+    "id": "sca_463ef95b107456bb",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Elite",
+    "data_scadenza": "01/10/2027",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BC-FVX-P3B\nn. licenze: 2,300"
+  },
+  {
+    "id": "sca_99dd8efc930f8706",
+    "cliente_id": "cli_medical-center-srl_980a8f5528",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Advanced",
+    "data_scadenza": "09/01/2027",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3AE-587-88W\nn. licenze: 40"
+  },
+  {
+    "id": "sca_657144bcfd56dc68",
+    "cliente_id": "cli_molise-dati-spa_b5ce931f31",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Elite",
+    "data_scadenza": "16/01/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-F55-FWD\nn. licenze: 600"
+  },
+  {
+    "id": "sca_c329093598122ffa",
+    "cliente_id": "cli_molise-dati-spa_b5ce931f31",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Elite",
+    "data_scadenza": "16/01/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BC-AN5-TWW\nn. licenze: 200"
+  },
+  {
+    "id": "sca_ccc9437bcd668bde",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Elite",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NDR\nn. licenze: 34"
+  },
+  {
+    "id": "sca_b44f9b84aeaf3244",
+    "cliente_id": "cli_c-t-i-4-law-s-r-l-s_124581fbf0",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Complete",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NBX\nn. licenze: 10"
+  },
+  {
+    "id": "sca_7408362136fe9147",
+    "cliente_id": "cli_studio-d-adamo-maria_c6d56fbb50",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Complete",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NBX\nn. licenze: 1"
+  },
+  {
+    "id": "sca_68e9ddfd2f947b2c",
+    "cliente_id": "cli_pulisud_7ca22126a4",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Elite",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NDR\nn. licenze: 6"
+  },
+  {
+    "id": "sca_6ad74d884302ebc7",
+    "cliente_id": "cli_asec-formazione_4efd4381c7",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Complete",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NBX\nn. licenze: 43"
+  },
+  {
+    "id": "sca_5451b9b57639a9ec",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Complete",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NBX\nn. licenze: 37"
+  },
+  {
+    "id": "sca_f6f5cb1e70245767",
+    "cliente_id": "cli_hotel-iris_d585c6a8b9",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Complete",
+    "data_scadenza": "01/04/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-UPA-NBX\nn. licenze: 3"
+  },
+  {
+    "id": "sca_3d264110740ec012",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Complete",
+    "data_scadenza": "29/01/2028",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3BB-H49-WD4\nn. licenze: 50"
+  },
+  {
+    "id": "sca_090073703921e0f6",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "ESET",
+    "tipo_licenza": "ESET PROTECT Advanced",
+    "data_scadenza": "30/04/2027",
+    "rinnovo_mensile": 12,
+    "note": "licenza: 3B3-ND6-N4H\nn. licenze: 75"
+  },
+  {
+    "id": "sca_8c286a7ba56c5403",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure Reserved Instances (NCE) + Saving Plan",
+    "data_scadenza": "22/02/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1426967\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 19/02/2026"
+  },
+  {
+    "id": "sca_1e3afb0cd57f4f70",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure Reserved Instances (NCE) + Saving Plan",
+    "data_scadenza": "22/02/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1426966\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 1\ndata_rinnovo: 19/02/2026"
+  },
+  {
+    "id": "sca_f68be43692ffa51e",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure Reserved Instances (NCE) + Saving Plan",
+    "data_scadenza": "22/02/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1426965\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 19/02/2026"
+  },
+  {
+    "id": "sca_64a24fe38db6bc62",
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure Reserved Instances (NCE) + Saving Plan",
+    "data_scadenza": "22/02/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1426969\nIdCliente_dettagli: 1026350700\nNrLicenza_dettagli: 1\ndata_rinnovo: 19/02/2026"
+  },
+  {
+    "id": "sca_5b51bff1e0e1e1b0",
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure New Commerce Experience (NCE)",
+    "data_scadenza": "26/02/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1322040\nIdCliente_dettagli: 1026350700\nNrLicenza_dettagli: 1\ndata_rinnovo: 23/02/2026"
+  },
+  {
+    "id": "sca_af0ea286d9cb7a7c",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure New Commerce Experience (NCE)",
+    "data_scadenza": "28/02/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1325172\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 1\ndata_rinnovo: 25/02/2026"
+  },
+  {
+    "id": "sca_5f1f997133b8033a",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Piano 1) (NCE COM MTH)",
+    "data_scadenza": "04/03/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1289475\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 02/03/2026"
+  },
+  {
+    "id": "sca_1bba889ef7c0189a",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure New Commerce Experience (NCE)",
+    "data_scadenza": "13/03/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1296273\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 10/03/2026"
+  },
+  {
+    "id": "sca_851f0f3bf8ef44a1",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure New Commerce Experience (NCE)",
+    "data_scadenza": "13/03/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1296275\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 1\ndata_rinnovo: 10/03/2026"
+  },
+  {
+    "id": "sca_73177eec2e44ccf0",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure New Commerce Experience (NCE)",
+    "data_scadenza": "13/03/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1296274\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 10/03/2026"
+  },
+  {
+    "id": "sca_9d77097a315dd33c",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "12/05/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1490350\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 20\ndata_rinnovo: 10/05/2026"
+  },
+  {
+    "id": "sca_5570101c750769cf",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "12/05/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1404464\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 2\ndata_rinnovo: 10/05/2026"
+  },
+  {
+    "id": "sca_baa1e505543f6270",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "12/05/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1431752\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 1\ndata_rinnovo: 10/05/2026"
+  },
+  {
+    "id": "sca_3338ebcdc347bda5",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "12/05/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1438502\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 1\ndata_rinnovo: 10/05/2026"
+  },
+  {
+    "id": "sca_d8215ad59a815ab9",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "12/05/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1472437\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 18\ndata_rinnovo: 10/05/2026"
+  },
+  {
+    "id": "sca_a0aed60440dc4140",
+    "cliente_id": "cli_medical-center-srl_980a8f5528",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "05/06/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1257349\nIdCliente_dettagli: 1026227247\nNrLicenza_dettagli: 10\ndata_rinnovo: 03/06/2026"
+  },
+  {
+    "id": "sca_541a5b8a9ac33e6e",
+    "cliente_id": "cli_medical-center-srl_980a8f5528",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "05/06/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1394486\nIdCliente_dettagli: 1026227247\nNrLicenza_dettagli: 5\ndata_rinnovo: 03/06/2026"
+  },
+  {
+    "id": "sca_c0c37467cb33b82a",
+    "cliente_id": "cli_di-grezia-massimiliano_2214636135",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM ANN)",
+    "data_scadenza": "15/06/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1257345\nIdCliente_dettagli: 1026227239\nNrLicenza_dettagli: 1\ndata_rinnovo: 13/06/2026"
+  },
+  {
+    "id": "sca_3b31eb1c5f22e7f6",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 2) (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1443747\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 1\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_c93690fd548e70d5",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft Teams Rooms Pro (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1453385\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 1\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_59ebc8c407999527",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1421262\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 25\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_7d10396049e701a5",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1421263\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 6\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_87395543205bbe8d",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "OneDrive for business (Plan 2) (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1423991\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 1\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_6d82cd9ab037edb7",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1423990\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 1\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_ab63e5f81f939d72",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1425682\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 1\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_5b53a396c2652bcb",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1425683\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 1\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_94dbcb699f2556d9",
+    "cliente_id": "cli_sviluppo-italia-molise-s-p-a_e31fea5c0a",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "02/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1467034\nIdCliente_dettagli: 1027785177\nNrLicenza_dettagli: 2\ndata_rinnovo: 30/06/2026"
+  },
+  {
+    "id": "sca_d7b204139b8d28f0",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Dispositivo Microsoft Intune Piano 1 (NCE COM ANN)",
+    "data_scadenza": "11/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1257346\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 1\ndata_rinnovo: 09/07/2026"
+  },
+  {
+    "id": "sca_cafef411f991a172",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Piano 1) (NCE COM MTH)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1272274\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_b313f519b6ebadd6",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (nessun team) (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1292457\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 2\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_3f07f4ac233c7f7f",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1305422\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_331f44340b9717e6",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 2) (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1446063\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_99459e12f4a89b82",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1402956\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 2\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_9002c97522fb5017",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1402957\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 33\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_2ec1d0842d36eb35",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1408408\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_fe306ecc5492e937",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "16/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1416976\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 14/07/2026"
+  },
+  {
+    "id": "sca_ec786549fd54f913",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM MTH)",
+    "data_scadenza": "17/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1305423\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 4\ndata_rinnovo: 15/07/2026"
+  },
+  {
+    "id": "sca_9311c21139f8dd44",
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM MTH)",
+    "data_scadenza": "22/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1306555\nIdCliente_dettagli: 1026350700\nNrLicenza_dettagli: 1\ndata_rinnovo: 20/07/2026"
+  },
+  {
+    "id": "sca_86dfe1cae2d55209",
+    "cliente_id": "cli_biogroup-s-p-a_39d7e68e6f",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM MTH)",
+    "data_scadenza": "22/07/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1306553\nIdCliente_dettagli: 1026350700\nNrLicenza_dettagli: 2\ndata_rinnovo: 20/07/2026"
+  },
+  {
+    "id": "sca_a0232760b60dba5f",
+    "cliente_id": "cli_v-veneto-assicurazioni-srl_f472f51af4",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "28/08/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1306554\nIdCliente_dettagli: 1026350718\nNrLicenza_dettagli: 5\ndata_rinnovo: 26/08/2026"
+  },
+  {
+    "id": "sca_3ef10385b69b80a9",
+    "cliente_id": "cli_medical-center-srl_980a8f5528",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM ANN)",
+    "data_scadenza": "08/09/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1257348\nIdCliente_dettagli: 1026227247\nNrLicenza_dettagli: 1\ndata_rinnovo: 06/09/2026"
+  },
+  {
+    "id": "sca_c03db839f6b59430",
+    "cliente_id": "cli_pulisud_7ca22126a4",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (nessun team) (NCE COM ANN)",
+    "data_scadenza": "11/09/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1314470\nIdCliente_dettagli: 1026376127\nNrLicenza_dettagli: 4\ndata_rinnovo: 09/09/2026"
+  },
+  {
+    "id": "sca_37a287c85c8011dc",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Office 365 F3 (NCE COM ANN)",
+    "data_scadenza": "24/09/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1308565\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 12\ndata_rinnovo: 22/09/2026"
+  },
+  {
+    "id": "sca_a9ce9fd3bd344b95",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Piano 1) (NCE COM ANN)",
+    "data_scadenza": "24/09/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1308564\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 1\ndata_rinnovo: 22/09/2026"
+  },
+  {
+    "id": "sca_f19c38008a14a24f",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Azure Active Directory Premium P1 (NCE COM ANN)",
+    "data_scadenza": "24/09/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1308668\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 1\ndata_rinnovo: 22/09/2026"
+  },
+  {
+    "id": "sca_a0a64790e91a6baa",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "24/09/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1448397\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 10\ndata_rinnovo: 22/09/2026"
+  },
+  {
+    "id": "sca_a7bc1e022da5c9a5",
+    "cliente_id": "cli_meca-poce_78577e2102",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (nessun team) (NCE COM ANN)",
+    "data_scadenza": "15/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1317399\nIdCliente_dettagli: 1026227221\nNrLicenza_dettagli: 1\ndata_rinnovo: 13/10/2026"
+  },
+  {
+    "id": "sca_df912cc6e5ac0879",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Piano 1) (NCE COM ANN)",
+    "data_scadenza": "18/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1318568\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 16/10/2026"
+  },
+  {
+    "id": "sca_17400c378f5b5c34",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "18/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1318656\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 2\ndata_rinnovo: 16/10/2026"
+  },
+  {
+    "id": "sca_d79731712860b451",
+    "cliente_id": "cli_asec-formazione_4efd4381c7",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "20/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1453298\nIdCliente_dettagli: 1027875804\nNrLicenza_dettagli: 11\ndata_rinnovo: 18/10/2026"
+  },
+  {
+    "id": "sca_61466534fe11b579",
+    "cliente_id": "cli_asrem-azienda-sanitaria-regionale-molise_e884463d66",
+    "prodotto": "O365",
+    "tipo_licenza": "Power Automate per piano utente (NCE COM ANN)",
+    "data_scadenza": "24/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1257350\nIdCliente_dettagli: 1026227213\nNrLicenza_dettagli: 1\ndata_rinnovo: 22/10/2026"
+  },
+  {
+    "id": "sca_55adfa402427f420",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "29/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1456726\nIdCliente_dettagli: 1027887056\nNrLicenza_dettagli: 10\ndata_rinnovo: 27/10/2026"
+  },
+  {
+    "id": "sca_358423fa1a71f995",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "29/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1457356\nIdCliente_dettagli: 1027887056\nNrLicenza_dettagli: 23\ndata_rinnovo: 27/10/2026"
+  },
+  {
+    "id": "sca_0f6006c23e776504",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "30/10/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1457589\nIdCliente_dettagli: 1027887056\nNrLicenza_dettagli: 1\ndata_rinnovo: 28/10/2026"
+  },
+  {
+    "id": "sca_05e6afae768dd136",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft Intune Plan 1 (NCE COM ANN)",
+    "data_scadenza": "13/11/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1462434\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 11/11/2026"
+  },
+  {
+    "id": "sca_39ae554116a22147",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Power Automate Premium (NCE COM MTH)",
+    "data_scadenza": "15/11/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1336600\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 13/11/2026"
+  },
+  {
+    "id": "sca_4c1df183db64b82e",
+    "cliente_id": "cli_planetcall-direct-srl_b09e58aa57",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM MTH)",
+    "data_scadenza": "21/11/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1257354\nIdCliente_dettagli: 1026227254\nNrLicenza_dettagli: 3\ndata_rinnovo: 19/11/2026"
+  },
+  {
+    "id": "sca_8756d05afe44b96c",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "28/11/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1479247\nIdCliente_dettagli: 1027887056\nNrLicenza_dettagli: 1\ndata_rinnovo: 26/11/2026"
+  },
+  {
+    "id": "sca_1f87e77f54fe7714",
+    "cliente_id": "cli_comune-di-montenero-di-bisaccia_3c80d6cb52",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "28/11/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1467713\nIdCliente_dettagli: 1027887056\nNrLicenza_dettagli: 1\ndata_rinnovo: 26/11/2026"
+  },
+  {
+    "id": "sca_e3b865c9f27cd2ab",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Standard (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1353356\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 1\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_164a15bbf0eb2719",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1359799\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 1\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_3de11ad40686b967",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1359840\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 10\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_eeebacce40f1e6e0",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1361010\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 10\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_3e6d97a197fff3a6",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1361011\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 33\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_b0dcaa31e5e26907",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1364170\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 1\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_a22fcaa4b3740d35",
+    "cliente_id": "cli_amministrazione-provinciale-di-isernia_1266d05115",
+    "prodotto": "O365",
+    "tipo_licenza": "Microsoft 365 Business Basic EEA (no Teams) (NCE COM ANN)",
+    "data_scadenza": "17/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1370811\nIdCliente_dettagli: 1026597839\nNrLicenza_dettagli: 1\ndata_rinnovo: 15/12/2026"
+  },
+  {
+    "id": "sca_8a897e2b07c985f7",
+    "cliente_id": "cli_molise-dati-spa_b5ce931f31",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "31/12/2026",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1357716\nIdCliente_dettagli: 1026593374\nNrLicenza_dettagli: 1\ndata_rinnovo: 29/12/2026"
+  },
+  {
+    "id": "sca_7a29e509765592cb",
+    "cliente_id": "cli_tecnotel-servizi-srl_5209c2befd",
+    "prodotto": "O365",
+    "tipo_licenza": "Exchange Online (Plan 1) (NCE COM ANN)",
+    "data_scadenza": "09/01/2027",
+    "rinnovo_mensile": 1,
+    "note": "id_dettagli: 1478723\nIdCliente_dettagli: 1026307650\nNrLicenza_dettagli: 1\ndata_rinnovo: 07/01/2027"
   }
 ]

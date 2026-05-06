@@ -9,5 +9,16 @@
       "canEditScadenze": true,
       "canDeleteScadenze": true
     }
+  },
+  {
+    "id": 1778065119293,
+    "username": "Utente",
+    "password": "$2b$10$qhqei5qkbJ.CDBLEtLZq5O.6q4CtWusnD/KRJu78jkq/zWqXp7GMe",
+    "ruolo": "user",
+    "permissions": {
+      "canCreateScadenze": true,
+      "canEditScadenze": false,
+      "canDeleteScadenze": false
+    }
   }
 ]

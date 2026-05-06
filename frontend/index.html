@@ -494,27 +494,73 @@ textarea {
     opacity: 0.7;
 }
 
-.settings-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 14px;
+    .settings-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface);
     box-shadow: 0 8px 20px rgba(20,31,48,0.08);
 }
 
-.settings-section h4 {
-    margin: 0;
-    font-size: 15px;
-    letter-spacing: 0;
-}
+    .settings-section h4 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: 0;
+    }
 
-.settings-section label:not(.permission-row) {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 800;
+    .settings-section h5 {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 0;
+        color: var(--muted);
+        text-transform: uppercase;
+    }
+
+    .settings-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 2px 0;
+    }
+
+    .admin-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid color-mix(in srgb, var(--accent), var(--border) 80%);
+        border-radius: 10px;
+        background: var(--accent-quiet);
+    }
+
+    .admin-panel-header {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .admin-panel-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .admin-panel-actions {
+        display: grid;
+        gap: 8px;
+    }
+
+    .admin-panel-actions .settings-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .settings-section label:not(.permission-row) {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
     text-transform: uppercase;
 }
 
@@ -620,20 +666,50 @@ textarea {
     background: var(--accent-quiet);
     border-color: var(--accent-soft);
 }
-.col h3 {
-    margin: 0 0 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 0;
-    text-transform: uppercase;
-}
+    .col h3 {
+        margin: 0 0 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+    }
 
-#settingsPanel {
-    background: var(--panel) !important;
-    box-shadow: -18px 0 48px rgba(0,0,0,0.18) !important;
-}
+    .column-pager {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 0 0 12px;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .column-pager .pager-info {
+        white-space: nowrap;
+    }
+
+    .column-pager .pager-actions {
+        display: flex;
+        gap: 6px;
+    }
+
+    .column-pager button {
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    #settingsPanel {
+        background: var(--panel) !important;
+        box-shadow: -18px 0 48px rgba(0,0,0,0.18) !important;
+    }
 
 #settingsPanel h3 {
     margin: 0 0 4px;
@@ -855,31 +931,46 @@ button:hover::after {
     </div>
 
     <div class="settings-section" id="usersSettings" style="display:none;">
-        <h4>Gestione utenti e permessi</h4>
-        <div class="settings-grid">
-            <input id="newUserUsername" placeholder="Nome utente">
-            <input id="newUserPassword" type="password" placeholder="Password">
+        <div class="admin-panel-header">
+            <h4>Gestione amministrazione</h4>
+            <p>Qui puoi creare utenti, cambiare ruoli e gestire i permessi operativi senza confonderli con le preferenze generali.</p>
         </div>
-        <select id="newUserRole" onchange="syncRolePermissions('newUser')">
-            <option value="user">Utente</option>
-            <option value="admin">Admin</option>
-        </select>
+
+        <div class="admin-panel">
+            <h5>Nuovo utente</h5>
+            <div class="admin-panel-actions">
+                <div class="settings-grid">
+                    <input id="newUserUsername" placeholder="Nome utente">
+                    <input id="newUserPassword" type="password" placeholder="Password">
+                </div>
+                <select id="newUserRole" onchange="syncRolePermissions('newUser')">
+                    <option value="user">Utente</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <div>
+                    <label class="permission-row">
+                        <input id="newUserCanCreate" type="checkbox">
+                        Può creare scadenze
+                    </label>
+                    <label class="permission-row">
+                        <input id="newUserCanEdit" type="checkbox">
+                        Può modificare scadenze
+                    </label>
+                    <label class="permission-row">
+                        <input id="newUserCanDelete" type="checkbox">
+                        Può eliminare scadenze
+                    </label>
+                </div>
+                <button class="primary" onclick="creaUtente()">Crea utente</button>
+            </div>
+        </div>
+
+        <div class="settings-divider"></div>
+
         <div>
-            <label class="permission-row">
-                <input id="newUserCanCreate" type="checkbox">
-                Può creare scadenze
-            </label>
-            <label class="permission-row">
-                <input id="newUserCanEdit" type="checkbox">
-                Può modificare scadenze
-            </label>
-            <label class="permission-row">
-                <input id="newUserCanDelete" type="checkbox">
-                Può eliminare scadenze
-            </label>
+            <h5>Utenti esistenti</h5>
+            <div id="usersList"></div>
         </div>
-        <button class="primary" onclick="creaUtente()">Crea utente</button>
-        <div id="usersList"></div>
     </div>
 
     <div style="margin-top:auto;">
@@ -893,6 +984,12 @@ button:hover::after {
 <script>
 const API = "/scadenze";
 const CLIENTI_API = "/clienti";
+const PAGE_SIZE_PER_COL = 8;
+const columnPageState = {
+    alta: 1,
+    media: 1,
+    bassa: 1
+};
 
 function logout() {
     fetch('/logout')
@@ -1018,7 +1115,7 @@ function renderUtenti(users) {
                 </label>
                 <div class="user-actions">
                     <button class="success" onclick="salvaUtente(${jsArg(user.id)})">Salva</button>
-                    <button class="delete" onclick="eliminaUtente(${jsArg(user.id)})" ${isSelf ? "disabled" : ""}>Elimina</button>
+                    <button class="delete" onclick="eliminaUtente(${jsArg(user.id)})" ${isSelf || role === "admin" ? "disabled" : ""}>Elimina</button>
                 </div>
             </div>
         `;
@@ -1534,8 +1631,48 @@ function ordinaAvanzato() {
     showToast("Ordinato per " + tipo);
 }
 
+function clampColumnPage(colore, totalPages) {
+    if (totalPages <= 0) {
+        columnPageState[colore] = 1;
+        return 1;
+    }
+
+    const current = columnPageState[colore] || 1;
+    const next = Math.min(Math.max(current, 1), totalPages);
+    columnPageState[colore] = next;
+    return next;
+}
+
+function changeColumnPage(colore, delta) {
+    const current = columnPageState[colore] || 1;
+    columnPageState[colore] = Math.max(1, current + delta);
+    render(datiGlobali);
+}
+
+function renderColumnPager(colore, currentPage, totalPages, totalItems) {
+    if (totalItems === 0) {
+        return `<div class="column-pager"><span class="pager-info">0 schede</span></div>`;
+    }
+
+    const prevDisabled = currentPage <= 1 ? "disabled" : "";
+    const nextDisabled = currentPage >= totalPages ? "disabled" : "";
+
+    return `
+        <div class="column-pager">
+            <span class="pager-info">${totalItems} schede · pagina ${currentPage}/${totalPages}</span>
+            <div class="pager-actions">
+                <button class="secondary" type="button" onclick="changeColumnPage('${colore}', -1)" ${prevDisabled}>‹</button>
+                <button class="secondary" type="button" onclick="changeColumnPage('${colore}', 1)" ${nextDisabled}>›</button>
+            </div>
+        </div>
+    `;
+}
+
 function resetFiltri() {
     filtro = "tutte";
+    columnPageState.alta = 1;
+    columnPageState.media = 1;
+    columnPageState.bassa = 1;
     carica();
 }
 
@@ -1560,9 +1697,11 @@ function render(data) {
     document.getElementById("urgenti").innerText = "Urgenti: " + urg;
     document.getElementById("scadute").innerText = "Scadute: " + sca;
 
-    let htmlAlta = "";
-    let htmlMedia = "";
-    let htmlBassa = "";
+    const perColonna = {
+        alta: [],
+        media: [],
+        bassa: []
+    };
 
     filtrati.forEach(s => {
         const diff = giorniDiff(s.data_scadenza);
@@ -1621,14 +1760,21 @@ function render(data) {
             `;
         }
 
-        if (prioritaAuto === "alta") htmlAlta += card;
-        else if (prioritaAuto === "media") htmlMedia += card;
-        else htmlBassa += card;
+        if (prioritaAuto === "alta") perColonna.alta.push(card);
+        else if (prioritaAuto === "media") perColonna.media.push(card);
+        else perColonna.bassa.push(card);
     });
 
-    document.getElementById("col-alta").innerHTML = htmlAlta;
-    document.getElementById("col-media").innerHTML = htmlMedia;
-    document.getElementById("col-bassa").innerHTML = htmlBassa;
+    ["alta", "media", "bassa"].forEach(colore => {
+        const cards = perColonna[colore];
+        const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE_PER_COL));
+        const currentPage = clampColumnPage(colore, totalPages);
+        const start = (currentPage - 1) * PAGE_SIZE_PER_COL;
+        const pageCards = cards.slice(start, start + PAGE_SIZE_PER_COL).join("");
+        const pager = renderColumnPager(colore, currentPage, totalPages, cards.length);
+        const emptyState = cards.length === 0 ? `<div style="color:var(--muted);font-size:13px;padding:8px 2px;">Nessuna scadenza</div>` : "";
+        document.getElementById("col-" + colore).innerHTML = pager + emptyState + pageCards;
+    });
 }
 
 function salva(id){
