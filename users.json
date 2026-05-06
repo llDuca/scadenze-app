@@ -3,6 +3,11 @@
     "id": 1777965331594,
     "username": "Tecnotel",
     "password": "$2b$10$OiXrrA9w1xUGDmB9x3wnSOPXi.ABG7nLD.OoYSDImqjiJ2jmDipGO",
-    "ruolo": "user"
+    "ruolo": "admin",
+    "permissions": {
+      "canCreateScadenze": true,
+      "canEditScadenze": true,
+      "canDeleteScadenze": true
+    }
   }
 ]

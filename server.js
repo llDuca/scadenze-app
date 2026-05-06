@@ -45,6 +45,59 @@ function writeJSON(file, data) {
     }
 }
 
+const DEFAULT_PERMISSIONS = {
+    canCreateScadenze: false,
+    canEditScadenze: false,
+    canDeleteScadenze: false
+};
+
+const ADMIN_PERMISSIONS = {
+    canCreateScadenze: true,
+    canEditScadenze: true,
+    canDeleteScadenze: true
+};
+
+function normalizzaPermessi(user) {
+    if (user?.ruolo === 'admin') return { ...ADMIN_PERMISSIONS };
+
+    return {
+        canCreateScadenze: Boolean(user?.permissions?.canCreateScadenze),
+        canEditScadenze: Boolean(user?.permissions?.canEditScadenze),
+        canDeleteScadenze: Boolean(user?.permissions?.canDeleteScadenze)
+    };
+}
+
+function utentePubblico(user) {
+    return {
+        id: user.id,
+        username: user.username,
+        ruolo: user.ruolo || 'user',
+        permissions: normalizzaPermessi(user)
+    };
+}
+
+function requireAuth(req, res, next) {
+    if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
+    next();
+}
+
+function requireAdmin(req, res, next) {
+    if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
+    if (req.session.user.ruolo !== 'admin') return res.status(403).json({ error: "permesso negato" });
+    next();
+}
+
+function requireScadenzePermission(permission) {
+    return (req, res, next) => {
+        if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
+        const permissions = normalizzaPermessi(req.session.user);
+        if (req.session.user.ruolo !== 'admin' && !permissions[permission]) {
+            return res.status(403).json({ error: "permesso negato" });
+        }
+        next();
+    };
+}
+
 function normalizzaTesto(value) {
     return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
 }
@@ -294,6 +347,10 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'frontend')));
 
+function aggiornaSessioneUtente(req, user) {
+    req.session.user = utentePubblico(user);
+}
+
 // PAGINA TEST REGISTRAZIONE (browser)
 app.get('/register', (req, res) => {
     res.send(`
@@ -342,16 +399,6 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    // LOGIN HARDCODED TECNOTEL
-    if (username === "Tecnotel" && password === "t3cn0t3l!") {
-        req.session.user = { id: 0, username: "Tecnotel", ruolo: "admin" };
-        // Se arriva da form HTML, fai redirect alla dashboard
-        if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
-            return res.redirect('/');
-        }
-        return res.json({ login: true, user: req.session.user });
-    }
-
     const users = readJSON(USERS_FILE);
     const user = users.find(u => u.username === username);
 
@@ -365,7 +412,7 @@ app.post('/login', async (req, res) => {
         return res.status(401).json({ error: "password errata" });
     }
 
-    req.session.user = { id: user.id, username: user.username, ruolo: user.ruolo };
+    aggiornaSessioneUtente(req, user);
 
     if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
         return res.redirect('/');
@@ -382,6 +429,90 @@ app.get('/me', (req, res) => {
     res.json({ logged: true, user: req.session.user });
 });
 
+app.get('/admin/users', requireAdmin, (req, res) => {
+    const users = readJSON(USERS_FILE);
+    res.json(users.map(utentePubblico));
+});
+
+app.post('/admin/users', requireAdmin, async (req, res) => {
+    const { username, password, ruolo, permissions } = req.body;
+    const cleanUsername = String(username || '').trim();
+
+    if (!cleanUsername || !password) {
+        return res.status(400).json({ error: "username e password obbligatori" });
+    }
+
+    const users = readJSON(USERS_FILE);
+    if (users.some(u => normalizzaTesto(u.username) === normalizzaTesto(cleanUsername))) {
+        return res.status(400).json({ error: "utente già esistente" });
+    }
+
+    const user = {
+        id: Date.now(),
+        username: cleanUsername,
+        password: await bcrypt.hash(password, 10),
+        ruolo: ruolo === 'admin' ? 'admin' : 'user',
+        permissions: ruolo === 'admin' ? ADMIN_PERMISSIONS : {
+            ...DEFAULT_PERMISSIONS,
+            ...permissions
+        }
+    };
+
+    users.push(user);
+    writeJSON(USERS_FILE, users);
+    res.json({ created: true, user: utentePubblico(user) });
+});
+
+app.put('/admin/users/:id', requireAdmin, async (req, res) => {
+    const { username, password, ruolo, permissions } = req.body;
+    const users = readJSON(USERS_FILE);
+    const userId = String(req.params.id);
+    const index = users.findIndex(u => String(u.id) === userId);
+
+    if (index === -1) return res.status(404).json({ error: "utente non trovato" });
+
+    const cleanUsername = String(username || '').trim();
+    if (!cleanUsername) return res.status(400).json({ error: "username obbligatorio" });
+
+    if (users.some(u => String(u.id) !== userId && normalizzaTesto(u.username) === normalizzaTesto(cleanUsername))) {
+        return res.status(400).json({ error: "username già usato" });
+    }
+
+    const nextRole = ruolo === 'admin' ? 'admin' : 'user';
+    users[index].username = cleanUsername;
+    users[index].ruolo = nextRole;
+    users[index].permissions = nextRole === 'admin' ? ADMIN_PERMISSIONS : {
+        ...DEFAULT_PERMISSIONS,
+        ...permissions
+    };
+
+    if (password) {
+        users[index].password = await bcrypt.hash(password, 10);
+    }
+
+    writeJSON(USERS_FILE, users);
+
+    if (String(req.session.user.id) === userId) {
+        aggiornaSessioneUtente(req, users[index]);
+    }
+
+    res.json({ updated: true, user: utentePubblico(users[index]) });
+});
+
+app.delete('/admin/users/:id', requireAdmin, (req, res) => {
+    const userId = String(req.params.id);
+    if (String(req.session.user.id) === userId) {
+        return res.status(400).json({ error: "non puoi eliminare l'utente con cui sei collegato" });
+    }
+
+    const users = readJSON(USERS_FILE);
+    const nextUsers = users.filter(u => String(u.id) !== userId);
+    if (nextUsers.length === users.length) return res.status(404).json({ error: "utente non trovato" });
+
+    writeJSON(USERS_FILE, nextUsers);
+    res.json({ deleted: true });
+});
+
 // LOGOUT
 app.get('/logout', (req, res) => {
     req.session.destroy(() => {});
@@ -393,9 +524,7 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
 });
 
-app.get('/scadenze', (req, res) => {
-    if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
-
+app.get('/scadenze', requireAuth, (req, res) => {
     const scadenze = readJSON(DB_FILE);
     const clienti = readJSON(CLIENTI_FILE);
     const dati = arricchisciScadenze(scadenze, clienti);
@@ -403,13 +532,11 @@ app.get('/scadenze', (req, res) => {
     res.json(dati);
 });
 
-app.get('/clienti', (req, res) => {
-    if (!req.session.user) return res.status(401).json({ error: "non autenticato" });
-
+app.get('/clienti', requireAuth, (req, res) => {
     res.json(readJSON(CLIENTI_FILE));
 });
 
-app.post('/scadenze', (req, res) => {
+app.post('/scadenze', requireScadenzePermission('canCreateScadenze'), (req, res) => {
     console.log('BODY RICEVUTO:', req.body);
 
     const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile, note } = req.body;
@@ -445,7 +572,7 @@ app.post('/scadenze', (req, res) => {
     res.json({ ...result.scadenza, cliente: clienteRecord ? clienteRecord.nome : cliente });
 });
 
-app.put('/scadenze/:id', (req, res) => {
+app.put('/scadenze/:id', requireScadenzePermission('canEditScadenze'), (req, res) => {
     const { cliente, prodotto, tipo_licenza, data_scadenza, rinnovo_mensile, note } = req.body;
 
     if (!cliente || !prodotto || !tipo_licenza || !data_scadenza) {
@@ -477,7 +604,7 @@ app.put('/scadenze/:id', (req, res) => {
     res.json({ updated: true });
 });
 
-app.delete('/scadenze/:id', (req, res) => {
+app.delete('/scadenze/:id', requireScadenzePermission('canDeleteScadenze'), (req, res) => {
     let dati = readJSON(DB_FILE);
 
     const nuovaLista = dati.filter(s => s.id != req.params.id);
